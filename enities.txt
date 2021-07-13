@@ -1,0 +1,51 @@
+THEME
+id PK
+name
+description
+picture_id FK -> PICTURES
+
+PRODUCT
+id PK
+name
+price
+discount
+rating
+theme_id FK -> THEMES
+age
+piece_count
+availability
+description
+picture_id FK -> PICTURES
+
+PICTURE
+id
+picture_url1
+picture_url2
+picture_url3
+picture_url4
+picture_url5
+
+CUSTOMER
+id
+name
+email
+address
+city
+postal_code
+phone
+rights
+
+ORDER
+id
+customer_id FK -> CUSTOMER
+number
+date
+total
+
+ORDER_DETAILS
+id PK
+order_id -> FK -> ORDER
+product_id -> FK -> PRODUCT
+price
+quantity
+subtotal
