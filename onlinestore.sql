@@ -4,7 +4,7 @@ CREATE DATABASE `onlinestore` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 CREATE TABLE `theme` (
   `theme_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(16) NOT NULL,
-  `description` varchar(1024) DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `picture_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`theme_id`),
   KEY `theme_FK` (`picture_id`),
@@ -21,7 +21,7 @@ CREATE TABLE `product` (
   `age` int(11) NOT NULL,
   `piece_count` int(11) NOT NULL,
   `availability` varchar(32) NOT NULL,
-  `description` varchar(1024) DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `picture_id` int(11) DEFAULT NULL,
   `theme_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`product_id`),
