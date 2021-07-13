@@ -1,24 +1,24 @@
 THEME
-id PK
+theme_id PK
 name
 description
 picture_id FK -> PICTURES
 
 PRODUCT
-id PK
+product_id PK
 name
 price
 discount
 rating
-theme_id FK -> THEMES
 age
 piece_count
 availability
 description
 picture_id FK -> PICTURES
+theme_id FK -> THEMES
 
 PICTURE
-id
+picture_id
 picture_url1
 picture_url2
 picture_url3
@@ -26,7 +26,7 @@ picture_url4
 picture_url5
 
 CUSTOMER
-id
+customer_id
 name
 email
 address
@@ -36,16 +36,16 @@ phone
 rights
 
 ORDER
-id
-customer_id FK -> CUSTOMER
+order_id
 number
 date
 total
+customer_id FK -> CUSTOMER
 
-ORDER_DETAILS
-id PK
-order_id -> FK -> ORDER
-product_id -> FK -> PRODUCT
+ORDER_PRODUCT
+order_product_id PK
 price
 quantity
 subtotal
+order_id -> FK -> ORDER
+product_id -> FK -> PRODUCT
