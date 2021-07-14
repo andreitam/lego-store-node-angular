@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+const mysql2 = require('mysql2');
 
 const promisify = function(conn, sqlQueryString) {
     return new Promise(function (resolve, reject) {
@@ -13,7 +13,7 @@ const promisify = function(conn, sqlQueryString) {
 };
 
 const database = () => {
-    const mysqlPool =  mysql.createPool({
+    const mysqlPool =  mysql2.createPool({
         host: '127.0.0.1',
         user: 'root',
         database: 'onlinestore',
@@ -21,7 +21,7 @@ const database = () => {
         multipleStatements: true
     })
     return {
-        query: (sqlQueryString, callback) => {
+        query: function (sqlQueryString, callback)  {
             if (typeof arguments[2] === 'function' || typeof arguments[2] === 'undefined' && typeof arguments[1] === 'function') {
                 mysqlPool.query(sqlQueryString, callback);
             } else {
