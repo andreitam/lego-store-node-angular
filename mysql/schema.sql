@@ -1,5 +1,26 @@
 CREATE DATABASE `onlinestore` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
--- onlinestore.theme definition
+
+CREATE TABLE `picture` (
+  `picture_id` int(11) NOT NULL AUTO_INCREMENT,
+  `picture_url1` varchar(128) DEFAULT NULL,
+  `picture_url2` varchar(128) DEFAULT NULL,
+  `picture_url3` varchar(128) DEFAULT NULL,
+  `picture_url4` varchar(128) DEFAULT NULL,
+  `picture_url5` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`picture_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `customer` (
+  `customer_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `address` varchar(128) NOT NULL,
+  `city` varchar(32) NOT NULL,
+  `postal_code` varchar(32) NOT NULL,
+  `phone` varchar(32) DEFAULT NULL,
+  `rights` tinyint(1) NOT NULL,
+  PRIMARY KEY (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `theme` (
   `theme_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -10,7 +31,6 @@ CREATE TABLE `theme` (
   KEY `theme_FK` (`picture_id`),
   CONSTRAINT `theme_FK` FOREIGN KEY (`picture_id`) REFERENCES `picture` (`picture_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
--- onlinestore.product definition
 
 CREATE TABLE `product` (
   `product_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -30,31 +50,6 @@ CREATE TABLE `product` (
   CONSTRAINT `product_FK` FOREIGN KEY (`picture_id`) REFERENCES `picture` (`picture_id`),
   CONSTRAINT `product_FK_1` FOREIGN KEY (`theme_id`) REFERENCES `theme` (`theme_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
--- onlinestore.picture definition
-
-CREATE TABLE `picture` (
-  `picture_id` int(11) NOT NULL AUTO_INCREMENT,
-  `picture_url1` varchar(128) DEFAULT NULL,
-  `picture_url2` varchar(128) DEFAULT NULL,
-  `picture_url3` varchar(128) DEFAULT NULL,
-  `picture_url4` varchar(128) DEFAULT NULL,
-  `picture_url5` varchar(128) DEFAULT NULL,
-  PRIMARY KEY (`picture_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
--- onlinestore.customer definition
-
-CREATE TABLE `customer` (
-  `customer_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) NOT NULL,
-  `email` varchar(64) NOT NULL,
-  `address` varchar(128) NOT NULL,
-  `city` varchar(32) NOT NULL,
-  `postal_code` varchar(32) NOT NULL,
-  `phone` varchar(32) DEFAULT NULL,
-  `rights` tinyint(1) NOT NULL,
-  PRIMARY KEY (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
--- onlinestore.`order` definition
 
 CREATE TABLE `order` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -66,7 +61,6 @@ CREATE TABLE `order` (
   KEY `order_FK` (`customer_id`),
   CONSTRAINT `order_FK` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
--- onlinestore.order_product definition
 
 CREATE TABLE `order_product` (
   `order_product_id` int(11) NOT NULL AUTO_INCREMENT,
