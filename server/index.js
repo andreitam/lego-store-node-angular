@@ -1,5 +1,5 @@
 // call all the required packages
-const express = require('express')
+const express = require('express');
 
 var cors = require('cors');
 
@@ -13,6 +13,8 @@ const pictures = require('./routes/pictures.js');
 const app = express();
 // cors allow usage of server from different origin only for development
 app.use(cors())
+//static
+app.use(express.static('public'));
 //
 app.use(parseUrlencoded);
 app.use(express.json());

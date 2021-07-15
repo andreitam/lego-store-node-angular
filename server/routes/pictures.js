@@ -5,44 +5,27 @@ const https = require('https');
 var moment = require('moment'); 
 const databaseModule = require('../utils/database');
 const database = databaseModule();
-const multer = require('multer');
-var fileExtension = require('file-extension');
+const uploadPictures = require('../utils/upload');
+const upload = uploadPictures();
+
 
 console.log('inside pictures')
-// Configure Storage
-var storage = multer.diskStorage({
-
-    // Setting directory on disk to save uploaded files
-    destination: function (req, file, cb) {
-        cb(null, 'uploads')
-    },
-
-    // Setting name of file saved
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + '.' + fileExtension(file.originalname))
-    }
-})
-
-var upload = multer({
-    storage: storage,
-    limits: {
-        // Setting Image Size Limit to 2MBs
-        fileSize: 2000000
-    },
-    fileFilter(req, file, cb) {
-        if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
-            //Error 
-            cb(new Error('Please upload JPG and PNG images only!'))
-        }
-        //Success 
-        cb(undefined, true)
-    }
-})
-
-router.route('/uploadfile').post(upload.single('uploadedImage'), (req, res, next) => {
-    const file = req.file
-    console.log(req);
-    if (!file) {
+router.get('/', function (req, res) {
+    res.json({ message: 'Message from pictures: Server Started!' });
+});
+// POST /pictures/uploadfiles -> insert into picture table product pictures
+const upFields = upload.fields([{name:'image1', maxCount: 1}, 
+                                {name:'image2', maxCount: 1}, 
+                                {name:'image3', maxCount: 1}, 
+                                {name:'image4', maxCount: 1}, 
+                                {name:'image5', maxCount: 1}]);
+router.post('/uploadfiles', upFields, (req, res, next) => {
+    const files = req.files
+    console.log(req.files);
+    const {image1, image2} = req.files;
+    console.log(image1[0].path)
+    console.log(images)
+    if (!files) {
         const error = new Error('Please upload a file')
         error.httpStatusCode = 400
         return next(error)
@@ -58,3 +41,19 @@ router.route('/uploadfile').post(upload.single('uploadedImage'), (req, res, next
         error: error.message
     })
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+module.exports = router;

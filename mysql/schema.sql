@@ -1,15 +1,5 @@
 CREATE DATABASE `onlinestore` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
-CREATE TABLE `picture` (
-  `picture_id` int(11) NOT NULL AUTO_INCREMENT,
-  `picture_url1` varchar(128) DEFAULT NULL,
-  `picture_url2` varchar(128) DEFAULT NULL,
-  `picture_url3` varchar(128) DEFAULT NULL,
-  `picture_url4` varchar(128) DEFAULT NULL,
-  `picture_url5` varchar(128) DEFAULT NULL,
-  PRIMARY KEY (`picture_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE `customer` (
   `customer_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
@@ -26,11 +16,9 @@ CREATE TABLE `theme` (
   `theme_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(16) NOT NULL,
   `description` text DEFAULT NULL,
-  `picture_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`theme_id`),
-  KEY `theme_FK` (`picture_id`),
-  CONSTRAINT `theme_FK` FOREIGN KEY (`picture_id`) REFERENCES `picture` (`picture_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `picture_url` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`theme_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `product` (
   `product_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -42,12 +30,12 @@ CREATE TABLE `product` (
   `piece_count` int(11) NOT NULL,
   `availability` varchar(32) NOT NULL,
   `description` text DEFAULT NULL,
-  `picture_id` int(11) DEFAULT NULL,
   `theme_id` int(11) DEFAULT NULL,
+  `picture_url1` varchar(128) DEFAULT NULL,
+  `picture_url2` varchar(128) DEFAULT NULL,
+  `picture_url3` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`product_id`),
-  KEY `product_FK` (`picture_id`),
   KEY `product_FK_1` (`theme_id`),
-  CONSTRAINT `product_FK` FOREIGN KEY (`picture_id`) REFERENCES `picture` (`picture_id`),
   CONSTRAINT `product_FK_1` FOREIGN KEY (`theme_id`) REFERENCES `theme` (`theme_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
