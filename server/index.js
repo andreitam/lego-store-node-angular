@@ -1,12 +1,13 @@
 // call all the required packages
 const express = require('express')
-const multer = require('multer');
+
 var cors = require('cors');
-var fileExtension = require('file-extension');
+
 const bodyParser = require('body-parser');
 const parseUrlencoded = bodyParser.urlencoded({ extended: true });
 const themes = require('./routes/themes.js');
 const products = require('./routes/products.js');
+const pictures = require('./routes/pictures.js');
 
 //CREATE EXPRESS APP
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.json());
 //ROUTES WILL GO HERE
 app.use('/themes', themes);
 app.use('/products', products);
+app.use('/pictures', pictures);
 
 app.listen(5000, 
     () => console.log('Server started on port 5000'));
