@@ -6,11 +6,9 @@ var moment = require('moment');
 const databaseModule = require('../utils/database');
 const database = databaseModule();
 
-router.get('/', function (req, res) {
-    res.json({ message: 'Message from router: Server Started!' });
-});
+console.log('inside themes')
 
-router.get('/themes', async (req, res) => {
+router.get('/', async (req, res) => {
     const getThemesSqlQuery = `
         select * from onlinestore.theme
     `
@@ -23,7 +21,7 @@ router.get('/themes', async (req, res) => {
     }
 });
 
-router.get('/themes/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     const {id} = req.params;
     console.log(id);
 

@@ -5,6 +5,8 @@ var cors = require('cors');
 var fileExtension = require('file-extension');
 const bodyParser = require('body-parser');
 const parseUrlencoded = bodyParser.urlencoded({ extended: true });
+const themes = require('./routes/themes.js');
+const products = require('./routes/products.js');
 
 //CREATE EXPRESS APP
 const app = express();
@@ -15,8 +17,8 @@ app.use(parseUrlencoded);
 app.use(express.json());
 
 //ROUTES WILL GO HERE
-const routes = require('./routes/routes.js')
-app.use('/', routes);
+app.use('/themes', themes);
+app.use('/products', products);
 
 app.listen(5000, 
     () => console.log('Server started on port 5000'));
