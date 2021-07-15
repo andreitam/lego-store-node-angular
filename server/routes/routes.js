@@ -1,11 +1,10 @@
-export {};
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
 const https = require('https');
 var moment = require('moment'); 
 const databaseModule = require('../utils/database');
-const db = databaseModule();
+const database = databaseModule();
 
 router.get('/', function (req, res) {
     res.json({ message: 'Message from router: Server Started!' });
@@ -16,7 +15,7 @@ router.get('/themes', async (req, res) => {
         select * from onlinestore.theme
     `
     try {
-        const results =  await db.query(getThemesSqlQuery);
+        const results =  await database.query(getThemesSqlQuery);
         console.log("Result: " + results);
         res.json(results);
     } catch (err){
@@ -32,7 +31,7 @@ router.get('/themes/:id', async (req, res) => {
         select * from onlinestore.theme where theme_id = ${id}
     `
     try {
-        const results =  await db.query(getThemesByIdSqlQuery);
+        const results =  await database.query(getThemesByIdSqlQuery);
         console.log("Result: " + results);
         res.json(results);
     } catch (err){

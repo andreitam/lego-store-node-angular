@@ -4,21 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "local": "nodemon --inspect=5555 build/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc"
+    "local": "nodemon --inspect=5555 index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Andrei Tamasanu",
   "license": "MIT",
   "dependencies": {
-    "@types/express": "^4.17.13",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "file-extension": "^4.0.5",
     "moment": "^2.29.1",
     "multer": "^1.4.2",
     "mysql": "^2.18.1",
-    "mysql2": "^2.2.5",
-    "typescript": "^4.3.5"
+    "mysql2": "^2.2.5"
   }
 }
