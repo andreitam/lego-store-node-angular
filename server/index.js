@@ -7,9 +7,8 @@ const bodyParser = require('body-parser');
 const parseUrlencoded = bodyParser.urlencoded({ extended: true });
 const themes = require('./routes/themes.js');
 const products = require('./routes/products.js');
-const pictures = require('./routes/pictures.js');
 
-//CREATE EXPRESS APP
+//create app
 const app = express();
 // cors allow usage of server from different origin only for development
 app.use(cors())
@@ -19,10 +18,10 @@ app.use(express.static('public'));
 app.use(parseUrlencoded);
 app.use(express.json());
 
-//ROUTES WILL GO HERE
+//routes
 app.use('/themes', themes);
 app.use('/products', products);
-app.use('/pictures', pictures);
+
 
 app.listen(5000, 
     () => console.log('Server started on port 5000'));

@@ -8,10 +8,7 @@ const database = databaseModule();
 const uploadPictures = require('../utils/upload');
 const upload = uploadPictures();
 
-console.log('inside themes')
-
 // GET /themes -> get all themes
-// GET /themes/{id} -> get theme by id
 router.get('/', async (req, res) => {
     const getThemesSqlQuery = `
         select * from onlinestore.theme
@@ -24,7 +21,7 @@ router.get('/', async (req, res) => {
         console.error(err);
     }
 });
-
+// GET /themes/{id} -> get theme by id
 router.get('/:id', async (req, res) => {
     const {id} = req.params;
     console.log(id);
@@ -39,10 +36,10 @@ router.get('/:id', async (req, res) => {
     } catch (err){
         console.error(err);
     }
-});
-
-const upFields = upload.fields([{name:'image', maxCount: 1}]);
-router.post('/', upFields, async (req, res, next) => {
+}); 
+// POST /themes -> insert new theme 
+const upImageFields = upload.fields([{name:'image', maxCount: 1}]);
+router.post('/', upImageFields, async (req, res, next) => {
     //body
     const {name,description} = req.body;
     console.log('name', name, '\n', 'description', description);
@@ -56,11 +53,14 @@ router.post('/', upFields, async (req, res, next) => {
     }
     //create path
     const {image} = req.files;
-    const picture_url = req.protocol + "://" + req.host + ':5000/images/' + image[0].filename;
+    const picture_url = req.protocol + "://" + req.hostname + ':5000/images/' + image[0].filename;
     console.log(picture_url);   
+    //escape ' character for MariaDB
+    const nameEscaped = name.replace(/'/g,"\\'");
+    const descriptionEscaped = description.replace("'", "\\'").replace("’", "\\'");
 
     const insertThemeSqlQuery = `insert into onlinestore.theme(name, description, picture_url)
-        values('${name}', '${description}', '${picture_url}')`
+        values('${nameEscaped}', '${descriptionEscaped}', '${picture_url}')`
     
     try {
         const results =  await database.query(insertThemeSqlQuery);
@@ -71,6 +71,5 @@ router.post('/', upFields, async (req, res, next) => {
     }
 
 });
-
 
 module.exports = router;
