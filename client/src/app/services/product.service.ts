@@ -12,9 +12,21 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  /** GET products from the server */
+    /** GET products from the server */
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productsUrl);
+    return this.http.get<Product[]>(this.productsUrl)
+      .pipe(
+        tap(_ => console.log('fetched products')),
+      );
+  }
+  
+    /** GET theme by id. Will 404 if id not found */
+  getProduct(id: number): Observable<Product> {
+    const url = `${this.productsUrl}/${id}`;
+    return this.http.get<Product>(url)
+      .pipe(
+        tap(_ => console.log(`fetched product id=${id}`))
+      );
   }
 
 }
