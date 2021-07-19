@@ -1,0 +1,43 @@
+
+.container {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+ .displayCol {
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 15px;
+ }
+
+.card-body {
+
+  .star {
+    font-size: 1.5rem;
+    color: #b0c4de;
+  }
+
+  .filled {
+    color: rgb(255, 207, 0);;
+  }
+
+  .add-cart {
+    width: 13rem;
+    color: black;
+  }
+}
+
+
+
+
+
+
+
+
