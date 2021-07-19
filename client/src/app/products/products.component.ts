@@ -9,6 +9,8 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
+  page: number = 1;
+  pageSize: number =12;
 
   constructor(private productService: ProductService) { }
 
@@ -19,6 +21,18 @@ export class ProductsComponent implements OnInit {
   getProducts(): void {
     this.productService.getProducts()
         .subscribe(products => this.products = products);
+  }
+
+  sortAscending(): void {
+    this.products.sort( (a: Product, b: Product) => (a.price < b.price) ? -1 : 1);
+  }
+
+  sortDescending(): void {
+    this.products.sort((a: Product, b: Product) => (a.price < b.price) ? 1 : -1);
+  }
+
+  sortByRating(): void {
+    this.products.sort((a: Product, b: Product) => (a.rating < b.rating) ? 1 : -1);
   }
 
 }

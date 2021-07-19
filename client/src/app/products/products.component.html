@@ -1,14 +1,15 @@
-<!-- <p>products works!</p>
-<ul class="heroes">
-  <li *ngFor="let product of products">
-    <a>
-      <span class="badge">{{product.name}}</span>{{product.rating}}
-    </a>
-  </li>
-</ul> -->
+
 <div class="container">
+  <div ngbDropdown class="sort-drop">
+    <button class="btn btn-outline-primary" id="dropdownConfig" ngbDropdownToggle>Sort by</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+      <button ngbDropdownItem (click)="sortAscending()">Price ascending</button>
+      <button ngbDropdownItem (click)="sortDescending()">Price descending</button>
+      <button ngbDropdownItem (click)="sortByRating()">Rating</button>
+    </div>
+  </div>
   <div class="row g-0 justify-content-center flex-container">
-    <div class="col-xl-3 col-lg-4 col-md-6 col-12 displayCol"  *ngFor="let product of products" >
+    <div class="col-xl-3 col-lg-4 col-md-6 col-12 displayCol"  *ngFor="let product of products | slice: (page-1) * pageSize : page * pageSize" >
       <div class="card">
         <img [src]="product.picture_url2" class="card-img-top" [alt]="product.picture_url1">
         <div class="card-body">
@@ -24,5 +25,10 @@
       </div>
     </div>
   </div>
+  <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [collectionSize]="products.length">
+  <ng-template ngbPaginationPrevious><</ng-template>
+  <ng-template ngbPaginationNext>></ng-template>
+  <ng-template ngbPaginationNumber let-page>{{ page }}</ng-template>
+</ngb-pagination>
 </div>
 
