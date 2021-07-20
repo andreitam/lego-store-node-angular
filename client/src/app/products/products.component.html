@@ -1,34 +1,85 @@
-
 <div class="container">
-  <div ngbDropdown class="sort-drop">
-    <button class="btn btn-outline-primary" id="dropdownConfig" ngbDropdownToggle>Sort by</button>
-    <div ngbDropdownMenu aria-labelledby="dropdownConfig">
-      <button ngbDropdownItem (click)="sortAscending()">Price ascending</button>
-      <button ngbDropdownItem (click)="sortDescending()">Price descending</button>
-      <button ngbDropdownItem (click)="sortByRating()">Rating</button>
+  <div class="row">
+    <div class="col-xl-3 col-xs-6">
+      <!-- filter acordeon -->
+      <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" (panelChange)="beforeChange($event)">
+        <ngb-panel title="Reset filters" id="preventchange-2">
+          <ng-template ngbPanelContent>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel title="Price">
+          <ng-template ngbPanelContent>
+            Anim pariatur cliche reprehenderit
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel title="Rating">
+          <ng-template ngbPanelContent>
+            Anim pariatur cliche reprehenderit
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel title="Age">
+          <ng-template ngbPanelContent>
+            Anim pariatur cliche reprehenderit
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel title="Piece Count">
+          <ng-template ngbPanelContent>
+            Anim pariatur cliche reprehenderit
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel title="Availability">
+          <ng-template ngbPanelContent>
+            Anim pariatur cliche reprehenderit
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
     </div>
-  </div>
-  <div class="row g-0 justify-content-center flex-container">
-    <div class="col-xl-3 col-lg-4 col-md-6 col-12 displayCol"  *ngFor="let product of products | slice: (page-1) * pageSize : page * pageSize" >
-      <div class="card">
-        <img [src]="product.picture_url2" class="card-img-top" [alt]="product.picture_url1">
-        <div class="card-body">
-          <h6 class="card-title">{{product.name}}</h6>
-          <ngb-rating [rate]="product.rating" [readonly]="true" [max]="5">
-            <ng-template let-fill="fill" let-index="index">
-              <span class="star" [class.filled]="fill === 100">&#9733;</span>
-            </ng-template>
-          </ngb-rating>
-          <h5 class="card-price">${{product.price}}</h5>
-          <a href="#" class="btn btn-primary add-cart">Add to Cart</a>
+    <div class="col">
+      <div class="row">
+        <!-- results text -->
+        <div class="col text-left">
+          <p>Showing 1-12 of {{products.length}} results</p>
+        </div>
+        <!-- dropdown sorting -->
+        <div class="col text-right">
+          <div ngbDropdown class="sort-drop">
+            <button class="btn btn-outline-primary" id="dropdownConfig" ngbDropdownToggle>Sort by</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+              <button ngbDropdownItem (click)="getSortedProducts(1, this.products)">Price ascending</button>
+              <button ngbDropdownItem (click)="getSortedProducts(2, this.products)">Price descending</button>
+              <button ngbDropdownItem (click)="getSortedProducts(3, this.products)">Rating</button>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="row g-0 justify-content-center flex-container">
+        <!-- product cards -->
+        <div class="col-xl-4 col-lg-4 col-md-6 col-12 displayCol"  *ngFor="let product of products | slice: (page-1) * pageSize : page * pageSize" >
+          <div class="card">
+            <img [src]="product.picture_url2" class="card-img-top" [alt]="product.picture_url1">
+            <div class="card-body">
+              <h6 class="card-title">{{product.name}}</h6>
+              <ngb-rating [rate]="product.rating" [readonly]="true" [max]="5">
+                <ng-template let-fill="fill" let-index="index">
+                  <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                </ng-template>
+              </ngb-rating>
+              <h5 class="card-price">${{product.price}}</h5>
+              <a href="#" class="btn btn-primary add-cart">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- pagination -->
+        <div class="col">
+          <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [collectionSize]="products.length">
+            <ng-template ngbPaginationPrevious><</ng-template>
+            <ng-template ngbPaginationNext>></ng-template>
+            <ng-template ngbPaginationNumber let-page>{{ page }}</ng-template>
+          </ngb-pagination>
+        </div>
     </div>
   </div>
-  <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [collectionSize]="products.length">
-  <ng-template ngbPaginationPrevious><</ng-template>
-  <ng-template ngbPaginationNext>></ng-template>
-  <ng-template ngbPaginationNumber let-page>{{ page }}</ng-template>
-</ngb-pagination>
 </div>
+
 

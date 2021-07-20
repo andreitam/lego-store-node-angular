@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../types/product';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -19,7 +19,7 @@ export class ProductService {
         tap(_ => console.log('fetched products')),
       );
   }
-  
+
     /** GET theme by id. Will 404 if id not found */
   getProduct(id: number): Observable<Product> {
     const url = `${this.productsUrl}/${id}`;
