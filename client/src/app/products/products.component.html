@@ -9,27 +9,50 @@
         </ngb-panel>
         <ngb-panel title="Price">
           <ng-template ngbPanelContent>
-            Anim pariatur cliche reprehenderit
-          </ng-template>
-        </ngb-panel>
-        <ngb-panel title="Rating">
-          <ng-template ngbPanelContent>
-            Anim pariatur cliche reprehenderit
+            <div class="filter" *ngFor="let price of this.productFilterService.priceSelect">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id={{price}} (click)="updateFilters(price)">
+                <label class="form-check-label" for="flexCheckDefault">
+                  {{price}}
+                </label>
+              </div>
+            </div>
           </ng-template>
         </ngb-panel>
         <ngb-panel title="Age">
           <ng-template ngbPanelContent>
-            Anim pariatur cliche reprehenderit
+            <div class="filter" *ngFor="let age of this.productFilterService.ageSelect">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id={{age}} (click)="updateFilters(age)">
+                <label class="form-check-label" for="flexCheckDefault">
+                  {{age}}
+                </label>
+              </div>
+            </div>
           </ng-template>
         </ngb-panel>
         <ngb-panel title="Piece Count">
           <ng-template ngbPanelContent>
-            Anim pariatur cliche reprehenderit
+            <div class="filter" *ngFor="let count of this.productFilterService.pieceCountSelect">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id={{count}} (click)="updateFilters(count)">
+                <label class="form-check-label" for="flexCheckDefault">
+                  {{count}}
+                </label>
+              </div>
+            </div>
           </ng-template>
         </ngb-panel>
         <ngb-panel title="Availability">
           <ng-template ngbPanelContent>
-            Anim pariatur cliche reprehenderit
+            <div class="filter" *ngFor="let availability of this.productFilterService.availability">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id={{availability}} (click)="updateFilters(availability)">
+                <label class="form-check-label" for="flexCheckDefault">
+                  {{availability}}
+                </label>
+              </div>
+            </div>
           </ng-template>
         </ngb-panel>
       </ngb-accordion>
@@ -38,23 +61,23 @@
       <div class="row">
         <!-- results text -->
         <div class="col text-left">
-          <p>Showing 1-12 of {{products.length}} results</p>
+          <p>Showing {{filteredProducts.length}}of {{products.length}} results</p>
         </div>
         <!-- dropdown sorting -->
         <div class="col text-right">
           <div ngbDropdown class="sort-drop">
             <button class="btn btn-outline-primary" id="dropdownConfig" ngbDropdownToggle>Sort by</button>
             <div ngbDropdownMenu aria-labelledby="dropdownConfig">
-              <button ngbDropdownItem (click)="getSortedProducts(1, this.products)">Price ascending</button>
-              <button ngbDropdownItem (click)="getSortedProducts(2, this.products)">Price descending</button>
-              <button ngbDropdownItem (click)="getSortedProducts(3, this.products)">Rating</button>
+              <button ngbDropdownItem (click)="getSortedProducts(1, this.filteredProducts)">Price ascending</button>
+              <button ngbDropdownItem (click)="getSortedProducts(2, this.filteredProducts)">Price descending</button>
+              <button ngbDropdownItem (click)="getSortedProducts(3, this.filteredProducts)">Rating</button>
             </div>
           </div>
         </div>
       </div>
       <div class="row g-0 justify-content-center flex-container">
         <!-- product cards -->
-        <div class="col-xl-4 col-lg-4 col-md-6 col-12 displayCol"  *ngFor="let product of products | slice: (page-1) * pageSize : page * pageSize" >
+        <div class="col-xl-4 col-lg-4 col-md-6 col-12 displayCol"  *ngFor="let product of filteredProducts | slice: (page-1) * pageSize : page * pageSize" >
           <div class="card">
             <img [src]="product.picture_url2" class="card-img-top" [alt]="product.picture_url1">
             <div class="card-body">

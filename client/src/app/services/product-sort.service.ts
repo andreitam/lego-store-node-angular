@@ -13,10 +13,14 @@ export class ProductSortService {
   sortedProducts$: Product[] = [];
 
   subscription = this.sortCriteria$.subscribe(x => {
-    if (x===0) this.productService.getProducts().subscribe(products => this.sortedProducts$ = products);
-    if (x===1) this.sortedProducts$.sort((a: Product, b: Product) => (a.price < b.price) ? -1 : 1);
-    if (x===2) this.sortedProducts$.sort((a: Product, b: Product) => (a.price < b.price) ? 1 : -1);
-    if (x===3) this.sortedProducts$.sort((a: Product, b: Product) => (a.rating < b.rating) ? 1 : -1);
+    if (x===Sort.Default)
+      this.productService.getProducts().subscribe(products => this.sortedProducts$ = products);
+    if (x===Sort.Ascending)
+      this.sortedProducts$.sort((a: Product, b: Product) => (a.price < b.price) ? -1 : 1);
+    if (x===Sort.Descending)
+      this.sortedProducts$.sort((a: Product, b: Product) => (a.price < b.price) ? 1 : -1);
+    if (x===Sort.ByRating)
+      this.sortedProducts$.sort((a: Product, b: Product) => (a.rating < b.rating) ? 1 : -1);
   })
 
   constructor(private productService: ProductService) { }
