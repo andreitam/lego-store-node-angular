@@ -3,8 +3,12 @@
     <div class="col-xl-3 col-xs-6">
       <!-- filter acordeon -->
       <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" (panelChange)="beforeChange($event)">
-        <ngb-panel title="Reset filters" id="preventchange-2">
-          <ng-template ngbPanelContent>
+        <ngb-panel title="Reset filters" id="preventchange-2" (click)="resetFilters()">
+          <ng-template ngbPanelHeader>
+            <div class="d-flex align-items-center justify-content-between">
+              <button ngbPanelToggle class="btn btn-link container-fluid  pl-0" (click)="resetFilters()">Reset</button>
+              <!-- <p *ngIf="disabled" class="text-muted m-0 small">[I'm&nbsp;disabled]</p> -->
+            </div>
           </ng-template>
         </ngb-panel>
         <ngb-panel title="Price">
@@ -61,23 +65,23 @@
       <div class="row">
         <!-- results text -->
         <div class="col text-left">
-          <p>Showing {{filteredProducts.length}}of {{products.length}} results</p>
+          <p>Showing {{products.length}} of {{products.length}} results</p>
         </div>
         <!-- dropdown sorting -->
         <div class="col text-right">
           <div ngbDropdown class="sort-drop">
             <button class="btn btn-outline-primary" id="dropdownConfig" ngbDropdownToggle>Sort by</button>
             <div ngbDropdownMenu aria-labelledby="dropdownConfig">
-              <button ngbDropdownItem (click)="getSortedProducts(1, this.filteredProducts)">Price ascending</button>
-              <button ngbDropdownItem (click)="getSortedProducts(2, this.filteredProducts)">Price descending</button>
-              <button ngbDropdownItem (click)="getSortedProducts(3, this.filteredProducts)">Rating</button>
+              <button ngbDropdownItem (click)="getSortedProducts(1, this.products)">Price ascending</button>
+              <button ngbDropdownItem (click)="getSortedProducts(2, this.products)">Price descending</button>
+              <button ngbDropdownItem (click)="getSortedProducts(3, this.products)">Rating</button>
             </div>
           </div>
         </div>
       </div>
       <div class="row g-0 justify-content-center flex-container">
         <!-- product cards -->
-        <div class="col-xl-4 col-lg-4 col-md-6 col-12 displayCol"  *ngFor="let product of filteredProducts | slice: (page-1) * pageSize : page * pageSize" >
+        <div class="col-xl-4 col-lg-4 col-md-6 col-12 displayCol"  *ngFor="let product of products | slice: (page-1) * pageSize : page * pageSize" >
           <div class="card">
             <img [src]="product.picture_url2" class="card-img-top" [alt]="product.picture_url1">
             <div class="card-body">
