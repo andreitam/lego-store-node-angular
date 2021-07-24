@@ -9,6 +9,8 @@ import { MainComponent } from './main/main.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductSortComponent } from './product-sort/product-sort.component';
+import { ProductFilterComponent } from './product-filter/product-filter.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     MainComponent,
     ProductsComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    ProductSortComponent,
+    ProductFilterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Product } from '../types/product';
-import { Sort } from '../types/sort';
-import { ProductService } from './product.service';
+import { Sort } from './types/sort';
+import { ProductService } from '../services/product.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class ProductSortService {
       this.sortedProducts$.sort((a: Product, b: Product) => (a.price < b.price) ? -1 : 1);
     if (x===Sort.Descending)
       this.sortedProducts$.sort((a: Product, b: Product) => (a.price < b.price) ? 1 : -1);
-    if (x===Sort.ByRating)
+    if (x===Sort.Rating)
       this.sortedProducts$.sort((a: Product, b: Product) => (a.rating < b.rating) ? 1 : -1);
   })
 

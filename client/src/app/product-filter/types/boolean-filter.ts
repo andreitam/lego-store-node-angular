@@ -1,4 +1,4 @@
-import { Availability } from "./availability";
+import { Availability } from "../../types/availability";
 
 export interface BooleanFilter {
   label: string;
