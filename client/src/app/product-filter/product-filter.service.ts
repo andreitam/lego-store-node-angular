@@ -9,30 +9,6 @@ import { Availability } from '../types/availability';
   providedIn: 'root'
 })
 export class ProductFilterService {
-  priceSelect = [
-    '$0 - $25',
-    '$25 - $75',
-    '$75 - $100',
-    '$100+'];
-  ageSelect = [
-    '2 - 3',
-    '4 - 5',
-    '6 - 8',
-    '9 - 12',
-    '13 -17',
-    '18+'];
-  pieceCountSelect = [
-    '1 - 99',
-    '100 - 249',
-    '250 - 499',
-    '500 - 999',
-    '1000+'];
-  availability = [
-    Availability.Availablenow,
-    Availability.Coomingsoon,
-    Availability.Outofstock,
-    Availability.Uponorder];
-
   filterCriteria$ = new Subject<String>();
 
   filteredProducts$: Product[] = [];

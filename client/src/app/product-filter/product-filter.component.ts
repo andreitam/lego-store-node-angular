@@ -19,7 +19,7 @@ export class ProductFilterComponent implements OnInit {
 
   @Output() newFilteredProducts = new EventEmitter<Product[]>();
 
-  filterRangesArray: RangeFilterCategory[] = [
+  filterRangesArray: RangeFilterCategory[] | undefined = [
     { title: 'Price',
       type: 'range',
       items: [
@@ -51,7 +51,7 @@ export class ProductFilterComponent implements OnInit {
       ]
     }];
 
-  filterBooleanArray: BooleanFilterCategory[] = [
+  filterBooleanArray: BooleanFilterCategory[] | undefined = [
     { title : 'Availability',
       type: 'boolean',
       items: [
@@ -67,6 +67,8 @@ export class ProductFilterComponent implements OnInit {
   productsFilterPiece: Product[] = [];
   productsFilterAvailability: Product[] = [];
 
+  selectedFilterRangeArray: RangeFilterCategory[] = [];
+
 
   constructor(private productsFilterService: ProductFilterService) { }
 
@@ -79,12 +81,23 @@ export class ProductFilterComponent implements OnInit {
     }
   }
 
-  filter() {
-    console.log('check');
-    const inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll("input[type='checkbox']");
-    for(let i = 0; i < inputs.length; i++) {
-        console.log(inputs[i])
-    }
+  filterRange(rangeFilterCategory: RangeFilterCategory) {
+    let minVal: number = 0;
+    let maxVal: number = 0;
+    rangeFilterCategory.items.filter(item => item.selected === true)
+                              .forEach(item => { console.log(item.selected);
+                                (item.minValue < minVal) ? minVal = item.minValue : minVal = minVal;
+                                (item.maxValue > maxVal) ? maxVal = item.maxValue : maxVal = maxVal;
+                              })
+
+    console.log(minVal, ' ', maxVal);
+    // this.productsFilterPrice = this.products.filter(product => product.price >= minVal && product.price < maxVal);
+    // console.log(this.productsFilterPrice);
+
+  }
+
+  filterBoolean(booleanFilterCategory: BooleanFilterCategory) {
+    console.log(booleanFilterCategory);
   }
 
 }

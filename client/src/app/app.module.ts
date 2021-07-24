@@ -11,6 +11,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { HttpClientModule } from '@angular/common/http';
 import { ProductSortComponent } from './product-sort/product-sort.component';
 import { ProductFilterComponent } from './product-filter/product-filter.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ProductFilterComponent } from './product-filter/product-filter.componen
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

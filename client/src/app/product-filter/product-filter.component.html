@@ -10,7 +10,7 @@
     <ng-template ngbPanelContent>
       <div class="filter" >
         <div class="form-check {{rangeCategory.title}}" *ngFor="let item of rangeCategory.items">
-          <input class="form-check-input" type="checkbox" value={{item.selected}} (click)="filter()">
+          <input class="form-check-input" type="checkbox" [(ngModel)]="item.selected" (change)="filterRange(rangeCategory)">
           <label class="form-check-label" for="flexCheckDefault">
             {{item.minValue}} - {{item.maxValue}} {{item.unit}}
           </label>
@@ -22,7 +22,7 @@
     <ng-template ngbPanelContent>
       <div class="filter" >
         <div class="form-check" *ngFor="let item of booleanCategory.items">
-          <input class="form-check-input {{booleanCategory.title}}" type="checkbox" value={{item.selected}} (click)="filter()">
+          <input class="form-check-input {{booleanCategory.title}}" type="checkbox" [(ngModel)]="item.selected" (click)="filterBoolean(booleanCategory)">
           <label class="form-check-label" for="flexCheckDefault">
             {{item.label}}
           </label>
