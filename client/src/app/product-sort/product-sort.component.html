@@ -1,8 +1,11 @@
 <div class="col text-right">
   <div ngbDropdown class="sort-drop">
-    <button class="btn btn-outline-primary" id="dropdownConfig" ngbDropdownToggle>Sort by</button>
-    <div ngbDropdownMenu aria-labelledby="dropdownConfig" *ngFor="let enum of sortTypeArray">
-      <button ngbDropdownItem (click)="sort(enum, this.products)">{{enum}}</button>
+    <button class="btn btn-outline-primary" id="dropdownConfig" ngbDropdownToggle (change)="getSortCategories()">Sort by</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+      <div *ngFor="let category of sortCategories">
+        <button ngbDropdownItem  (click)="sortByCategory(category)">{{category.title}}</button>
+      </div>
     </div>
   </div>
 </div>
+

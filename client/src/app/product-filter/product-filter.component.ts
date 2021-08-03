@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
-import { Sort } from '../product-sort/types/sort';
 import { Product } from '../types/product';
 import { ProductFilterService } from './product-filter.service';
 import { Availability } from '../types/availability';

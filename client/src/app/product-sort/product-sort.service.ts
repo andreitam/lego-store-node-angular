@@ -1,37 +1,43 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { Product } from '../types/product';
-import { Sort } from './types/sort';
-import { ProductService } from '../services/product.service';
+import { SortCategory } from './types/sort-category';
+import { SORTTYPES } from './types/sort-types';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductSortService {
-  sortCriteria$ = new Subject<Sort>();
+  sortedProducts$: Product[] | any = [];
 
-  sortedProducts$: Product[] = [];
+  getSortCategories(): Observable<SortCategory[]> {
+    const sortCategories = of(SORTTYPES);
+    return sortCategories;
+  }
 
-  subscription = this.sortCriteria$.subscribe(x => {
-    if (x===Sort.Default)
-      this.productService.getProducts().subscribe(products => this.sortedProducts$ = products);
-    if (x===Sort.Ascending)
-      this.sortedProducts$.sort((a: Product, b: Product) => (a.price < b.price) ? -1 : 1);
-    if (x===Sort.Descending)
-      this.sortedProducts$.sort((a: Product, b: Product) => (a.price < b.price) ? 1 : -1);
-    if (x===Sort.Rating)
-      this.sortedProducts$.sort((a: Product, b: Product) => (a.rating < b.rating) ? 1 : -1);
-  })
-
-  constructor(private productService: ProductService) { }
-
-   getSortedProducts(number: Sort, products: Product[]) {
-    //get products from product component view
+  getSortedProducts(sortCategory: SortCategory, products: Product[]): Observable<Product[]> {
     this.sortedProducts$ = products;
-    //sort according to selected criteria
-    this.sortCriteria$.next(number);
-    //return subject to be subscribed to
-    return new BehaviorSubject<Product[]>(this.sortedProducts$);
-   }
+
+    if (sortCategory.property === 'price') {
+      if (sortCategory.ascending === true) {
+        this.sortedProducts$.sort((a: Product, b: Product) => (a.price < b.price) ? -1 : 1);
+      }
+      else {
+        this.sortedProducts$.sort((a: Product, b: Product) => (a.price < b.price) ? 1 : -1);
+      }
+    }
+
+    else if (sortCategory.property === 'rating') {
+      if (sortCategory.ascending === true) {
+        this.sortedProducts$.sort((a: Product, b: Product) => (a.rating < b.rating) ? -1 : 1);
+      }
+      else {
+        this.sortedProducts$.sort((a: Product, b: Product) => (a.rating < b.rating) ? 1 : -1);
+      }
+    }
+
+    return new Observable<Product[]>((this.sortedProducts$));
+  }
 
 }

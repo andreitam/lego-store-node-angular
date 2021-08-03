@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Product } from '../types/product';
-import { Sort } from '../product-sort/types/sort';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Availability } from '../types/availability';
 
