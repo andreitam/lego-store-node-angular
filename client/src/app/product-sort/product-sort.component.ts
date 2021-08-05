@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Subject } from 'rxjs';
 import { ProductService } from '../services/product.service';
 import { Product } from '../types/product';
 import { ProductSortService } from './product-sort.service';
@@ -17,6 +16,10 @@ export class ProductSortComponent implements OnInit {
 
   sortCategories: SortCategory[] = [];
 
+  unsortedProducts: Product[] | any =[];
+
+  sorted: Boolean = false;
+
   constructor(private productSortService: ProductSortService, private productService: ProductService) { }
 
   ngOnInit(): void {
@@ -29,19 +32,30 @@ export class ProductSortComponent implements OnInit {
   }
 
   sortByCategory(sortCategory: SortCategory): void {
-    console.log(sortCategory);
-    //if default is selected make ajax call
-    if (sortCategory.default === true) {
-      this.productService.getProducts()
-          .subscribe((products: Product[] | undefined) => {this.newSortedProducts.emit(products);});
+    if(this.sorted === false) {   
+      //if sorting was not made store the list with products  
+      [...this.unsortedProducts] = this.products;
+      if (sortCategory.default !== true) {
+        this.productSortService.getSortedProducts(sortCategory, this.products)
+        .subscribe((products: Product[] | undefined) => this.newSortedProducts.emit(products));
+        this.sorted = true; 
+      }
+      else {
+        this.newSortedProducts.emit(this.products);
+      }
     }
-    else {
-      this.productSortService.getSortedProducts(sortCategory, this.products)
-           .subscribe((products: Product[] | undefined) => {this.newSortedProducts.emit(products);});
+    else if (this.sorted === true) {
+      if (sortCategory.default !== true) {
+        this.productSortService.getSortedProducts(sortCategory, this.products)
+        .subscribe((products: Product[] | undefined) => this.newSortedProducts.emit(products));
+      }
+      else {
+        //if sorting was already made return the unsorted list and reset bit
+        this.newSortedProducts.emit(this.unsortedProducts);
+        this.sorted = false;
+      }
     }
 
   }
-
-
 
 }

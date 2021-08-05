@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { Observable, of} from 'rxjs';
 import { Product } from '../types/product';
 import { SortCategory } from './types/sort-category';
 import { SORTTYPES } from './types/sort-types';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +37,7 @@ export class ProductSortService {
       }
     }
 
-    return new Observable<Product[]>((this.sortedProducts$));
+    return new Observable<Product[]>(subscriber => subscriber.next(this.sortedProducts$));
   }
 
 }

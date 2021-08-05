@@ -34,6 +34,9 @@ export class ProductsComponent implements OnInit {
     this.products = products;
   }
 
-
+  getFilteredProducts(products: Product[]): void {
+    this.products = products;
+    console.log('from products filtered', this.products)
+  }
 
 }
