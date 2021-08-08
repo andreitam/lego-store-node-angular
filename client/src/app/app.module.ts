@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductSortComponent } from './product-sort/product-sort.component';
 import { ProductFilterComponent } from './product-filter/product-filter.component';
 import { FormsModule } from '@angular/forms';
+import { BrandComponent } from './brand/brand.component';
+import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { FormsModule } from '@angular/forms';
     ProductsComponent,
     ProductDetailsComponent,
     ProductSortComponent,
-    ProductFilterComponent
+    ProductFilterComponent,
+    BrandComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,

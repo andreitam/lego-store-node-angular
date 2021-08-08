@@ -47,19 +47,37 @@ export class ProductFilterComponent implements OnInit {
   }
 
   filterProducts(): void {
-    console.log('start filtering');
     let tempProducts: Product[] = [];
     this.productService.getProducts()
           .subscribe((products: Product[]) => {
-            tempProducts = products 
+            tempProducts = products
             this.productFilterService.getFilteredProducts(tempProducts, this.rangeCategories, this.booleanCategories)
                             .subscribe((products: Product[] | undefined) => {
                               console.log('received from service', products);
                               this.newFilteredProducts.emit(products);
-                            });          
+                            });
           });
-     
-    console.log('finished filtering')                                             
+
+    console.log('finished filtering')
+  }
+
+  resetProducts(): void {
+    for (let rangeCategory of this.rangeCategories) {
+      for (let item of rangeCategory.items) {
+        item.selected = false;
+      }
+    }
+
+    for (let booleanCategory of this.booleanCategories) {
+      for (let item of booleanCategory.items) {
+        item.selected = false;
+      }
+    }
+
+    this.productService.getProducts()
+          .subscribe(products => {
+            this.newFilteredProducts.emit(products);
+          })
   }
 
 }

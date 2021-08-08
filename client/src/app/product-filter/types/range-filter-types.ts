@@ -21,7 +21,7 @@ export const RANGE_FILTER_TYPES: RangeFilterCategory[] = [
       {minValue: 6, maxValue: 8, unit: Unit.Age, selected: false},
       {minValue: 9, maxValue: 12, unit: Unit.Age, selected: false},
       {minValue: 13, maxValue: 17, unit: Unit.Age, selected: false},
-      {minValue: 8, maxValue: Infinity, unit: Unit.Age, selected: false}
+      {minValue: 18, maxValue: Infinity, unit: Unit.Age, selected: false}
     ]
   },
   { title: 'Piece Count',
