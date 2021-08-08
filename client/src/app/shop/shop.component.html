@@ -1,1 +1,20 @@
-<p>shop works!</p>
+<div class="col">
+  <div ngbDropdown class="d-inline-block">
+    <button class="btn" id="dropdownBasic1" ngbDropdownToggle (change)='getShopCategories()'>SHOP</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <div *ngFor="let shopCategory of shopCategories">
+          <div ngbDropdown class="d-inline-block dropright">
+            <button class="btn" id="dropdownBasic1" ngbDropdownToggle>Shop by {{shopCategory.title}}</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <a routerLink="/main" ngbDropdownItem>All</a>
+              <div *ngFor="let item of shopCategory.items">
+                <a routerLink="/main/{{item.id}}" ngbDropdownItem>{{item.label}}</a>
+              </div>
+              <a routerLink="/theme" ngbDropdownItem>See all Themes</a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+

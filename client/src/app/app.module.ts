@@ -11,9 +11,11 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { HttpClientModule } from '@angular/common/http';
 import { ProductSortComponent } from './product-sort/product-sort.component';
 import { ProductFilterComponent } from './product-filter/product-filter.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrandComponent } from './brand/brand.component';
 import { ShopComponent } from './shop/shop.component';
+import { ProductFormComponent } from './product-form/product-form.component';
+
 
 @NgModule({
   declarations: [
@@ -26,14 +28,17 @@ import { ShopComponent } from './shop/shop.component';
     ProductSortComponent,
     ProductFilterComponent,
     BrandComponent,
-    ShopComponent
+    ShopComponent,
+    ProductSortComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

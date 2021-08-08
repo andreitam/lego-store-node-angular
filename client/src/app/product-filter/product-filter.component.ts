@@ -8,6 +8,8 @@ import { FilterCategory } from './types/filter-category';
 import { RangeFilterCategory } from './types/range-filter-category';
 import { Unit } from './types/unit';
 import { ProductService } from '../services/product.service';
+import { ThemesService } from '../services/themes.service';
+import { Theme } from '../types/theme';
 
 @Component({
   selector: 'app-product-filter',
@@ -16,14 +18,15 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductFilterComponent implements OnInit {
   @Input() products: Product[] = [];
-
   @Output() newFilteredProducts = new EventEmitter<Product[]>();
 
   rangeCategories: RangeFilterCategory[] = [];
 
   booleanCategories: BooleanFilterCategory[] = [];
 
-  constructor(private productFilterService: ProductFilterService, private productService: ProductService) { }
+  constructor(private productFilterService: ProductFilterService,
+    private themeService: ThemesService,
+    private productService: ProductService) { }
 
   ngOnInit(): void {
     this.getRangeFilterCategories();
@@ -36,8 +39,14 @@ export class ProductFilterComponent implements OnInit {
   }
 
   getBooleanFilterCategories(): void {
-    this.productFilterService.getBooleanFilterCategories()
-        .subscribe(booleanCategories => this.booleanCategories = booleanCategories);
+    let tempThemes: Theme[] = [];
+    this.themeService.getThemes()
+      .subscribe((themes: Theme[]) => {
+          tempThemes = [...themes];
+          this.productFilterService.getBooleanFilterCategories(tempThemes)
+                .subscribe(booleanCategories => this.booleanCategories = booleanCategories);
+      });
+
   }
 
   beforeChange($event: NgbPanelChangeEvent) {
@@ -57,8 +66,6 @@ export class ProductFilterComponent implements OnInit {
                               this.newFilteredProducts.emit(products);
                             });
           });
-
-    console.log('finished filtering')
   }
 
   resetProducts(): void {
@@ -81,3 +88,7 @@ export class ProductFilterComponent implements OnInit {
   }
 
 }
+function themes(themes: any, arg1: any) {
+  throw new Error('Function not implemented.');
+}
+

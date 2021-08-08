@@ -15,7 +15,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getProduct(): void {
-    
+
   }
 
 }

@@ -2,7 +2,7 @@
   <ngb-panel title="Reset filters" id="preventchange-2">
     <ng-template ngbPanelHeader>
       <div class="d-flex align-items-center justify-content-between">
-        <button ngbPanelToggle class="btn btn-link container-fluid  pl-0" (click)="resetProducts()">Reset</button>
+        <button routerLink="/main" ngbPanelToggle class="btn btn-link container-fluid  pl-0" (click)="resetProducts()">Reset</button>
       </div>
     </ng-template>
   </ngb-panel>
@@ -18,19 +18,19 @@
       </div>
     </ng-template>
   </ngb-panel>
-  <ngb-panel title={{booleanCategory.title}} *ngFor="let booleanCategory of booleanCategories">
-    <ng-template ngbPanelContent>
-      <div class="filter" >
-        <div class="form-check" *ngFor="let item of booleanCategory.items">
-          <input class="form-check-input {{booleanCategory.title}}" type="checkbox" [(ngModel)]="item.selected" (click)="filterProducts()">
-          <label class="form-check-label" for="flexCheckDefault">
-            {{item.label}}
-          </label>
-        </div>
-      </div>
-    </ng-template>
+    <ngb-panel title={{booleanCategory.title}} *ngFor="let booleanCategory of booleanCategories">
+      <ng-template ngbPanelContent>
+        <div class="filter" >
+          <div class="form-check" *ngFor="let item of booleanCategory.items">
+            <input class="form-check-input {{booleanCategory.title}}" type="checkbox" [(ngModel)]="item.selected" (click)="filterProducts()">
+            <label class="form-check-label" for="flexCheckDefault">
+              {{item.label}}
+            </label>
+          </div>
+         </div>
+        </ng-template>
   </ngb-panel>
-
 </ngb-accordion>
+
 
 

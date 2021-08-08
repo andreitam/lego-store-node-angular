@@ -20,7 +20,7 @@ export class ThemesService {
         tap(_ => console.log('fetched themes')),
       );
   }
-  
+
     /** GET theme by id. Will 404 if id not found */
   getTheme(id: number): Observable<Theme> {
     const url = `${this.themeUrl}/${id}`;

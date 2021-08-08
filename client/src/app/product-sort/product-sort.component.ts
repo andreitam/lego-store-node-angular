@@ -32,13 +32,13 @@ export class ProductSortComponent implements OnInit {
   }
 
   sortByCategory(sortCategory: SortCategory): void {
-    if(this.sorted === false) {   
-      //if sorting was not made store the list with products  
+    if(this.sorted === false) {
+      //if sorting was not made store the list with products
       [...this.unsortedProducts] = this.products;
       if (sortCategory.default !== true) {
         this.productSortService.getSortedProducts(sortCategory, this.products)
         .subscribe((products: Product[] | undefined) => this.newSortedProducts.emit(products));
-        this.sorted = true; 
+        this.sorted = true;
       }
       else {
         this.newSortedProducts.emit(this.products);

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../types/product';
 import { ProductService } from '../services/product.service';
-import {NgbPanelChangeEvent} from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute, NavigationEnd, NavigationError, NavigationStart, Router, RoutesRecognized } from '@angular/router';
 
 
 @Component({
@@ -13,20 +13,29 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   page: number = 1;
   pageSize: number = 12;
-  sortedProducts: Product[] = [];
 
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,
+    private route: ActivatedRoute, private router: Router, private activatedRoute : ActivatedRoute) {
+      this.activatedRoute.url.subscribe(url =>{
+        console.log(url);
+        this.getProducts();
+   });
+     }
 
   ngOnInit(): void {
     this.getProducts();
   }
 
-
   getProducts(): void {
+    //check if route is parameterised with /:id
+    const themeId = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
     this.productService.getProducts()
           .subscribe(products => {
-            this.products = products;
+            (Boolean(themeId) !== false)
+            ? this.products = products.filter(product => product.theme_id === themeId)
+            : this.products = products;
+            console.log(this.products);
           });
   }
 
@@ -36,7 +45,6 @@ export class ProductsComponent implements OnInit {
 
   getFilteredProducts(products: Product[]): void {
     this.products = products;
-    console.log('from products filtered', this.products)
   }
 
 }

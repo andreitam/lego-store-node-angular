@@ -5,6 +5,7 @@ import { RangeFilterCategory } from './types/range-filter-category';
 import { RANGE_FILTER_TYPES } from './types/range-filter-types';
 import { BooleanFilterCategory } from './types/boolean-filter-category';
 import { BOOLEAN_FILTER_TYPES } from './types/boolean-filter-types';
+import { Theme } from '../types/theme';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,12 @@ export class ProductFilterService {
     return rangeFilterCategories;
   }
 
-  getBooleanFilterCategories(): Observable<BooleanFilterCategory[]> {
+  getBooleanFilterCategories(themes: Theme[]): Observable<BooleanFilterCategory[]> {
+    const booleanFilterArray = [...BOOLEAN_FILTER_TYPES];
+    //insert theme names as BooleanFilter objects
+    for (let theme of themes) {
+      booleanFilterArray[1].items.push({label: theme.name, id: theme.theme_id, selected: false});
+    }
     const booleanFilterCategories = of(BOOLEAN_FILTER_TYPES);
     return booleanFilterCategories;
   }
@@ -30,8 +36,10 @@ export class ProductFilterService {
         const productsFilteredByAge =  this.filterByRangeCategory(products, 'Age', rangeFilterCategories);
         const productsFilteredByPieceCount =  this.filterByRangeCategory(products, 'Piece Count', rangeFilterCategories);
         const productsFilteredByAvailability =  this.filterByBooleanCategory(products, 'Availability', booleanFilterCategories);
+        const productsFilteredByTheme = this.filterByBooleanCategory(products, 'Theme', booleanFilterCategories);
         filteredProducts = this.intersection(productsFilteredByPrice, productsFilteredByAge,
-                            productsFilteredByPieceCount, productsFilteredByAvailability);
+                            productsFilteredByPieceCount, productsFilteredByAvailability,
+                            productsFilteredByTheme);
       }
       else filteredProducts = products;
 
@@ -80,13 +88,28 @@ export class ProductFilterService {
 
   filterByBooleanCategory(products: Product[], categoryTitle: String, booleanFilterCategories: BooleanFilterCategory[]): Product[] {
     let arrayProducts: Product[] = [];
-    booleanFilterCategories.filter(category => category.title === categoryTitle)[0]
-                           .items.filter(item =>item.selected === true)
-                           .forEach(item => {
-                             arrayProducts = arrayProducts.concat(
-                               products.filter(product => product.availability === item.label)
-                               )
-                            })
+    switch(categoryTitle) {
+      case 'Availability':
+            booleanFilterCategories.filter(category => category.title === categoryTitle)[0]
+            .items.filter(item =>item.selected === true)
+            .forEach(item => {
+              arrayProducts = arrayProducts.concat(
+                products.filter(product => product.availability === item.label)
+                )
+            })
+            break;
+      case 'Theme':
+            console.log('inside theme filtering', booleanFilterCategories);
+            booleanFilterCategories.filter(category => category.title === categoryTitle)[0]
+            .items.filter(item =>item.selected === true)
+            .forEach(item => {
+              arrayProducts = arrayProducts.concat(
+                products.filter(product => product.theme_id === item.id)
+                )
+            })
+            break;
+    }
+
     return arrayProducts;
   }
 

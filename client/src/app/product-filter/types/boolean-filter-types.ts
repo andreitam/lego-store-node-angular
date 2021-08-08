@@ -11,5 +11,9 @@ export const BOOLEAN_FILTER_TYPES: BooleanFilterCategory[] = [
         { label: Availability.Outofstock, selected: false},
         { label: Availability.Uponorder, selected: false},
             ]
+    },
+    { title : 'Theme',
+      type: 'boolean',
+      items: [] //filled dynamically
     }
 ];

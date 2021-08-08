@@ -1,7 +1,7 @@
-import { Availability } from '../types/availability';
+import { Availability } from './availability';
 
 export interface Product {
-  product_id: number;
+  product_id?: number;
   name: string;
   price: number;
   discount: number;
@@ -11,8 +11,8 @@ export interface Product {
   availability: Availability;
   description: string;
   theme_id: number;
-  picture_url1: string;
-  picture_url2: string;
-  picture_url3: string;
+  picture_url1?: string;
+  picture_url2?: string;
+  picture_url3?: string;
 
 }
