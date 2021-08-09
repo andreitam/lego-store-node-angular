@@ -20,15 +20,6 @@ export class ProductService {
       );
   }
 
-    /** GET theme by id. Will 404 if id not found */
-  getProduct(id: number): Observable<Product> {
-    const url = `${this.productsUrl}/${id}`;
-    return this.http.get<Product>(url)
-      .pipe(
-        tap(_ => console.log(`fetched product id=${id}`))
-      );
-  }
-
   postProduct(formData: FormData): void {
     this.http.post(this.productsUrl, formData).subscribe(
       (response) => console.log(response),
@@ -36,5 +27,16 @@ export class ProductService {
     )
   }
 
+    /** GET hero by id. Return `undefined` when id not found */
+    getProduct(id: number): Observable<Product> {
+      const url = `${this.productsUrl}/${id}`;
+      return this.http.get<Product[]>(url)
+        .pipe(
+          map(products => products[0]), // returns a {0|1} element array
+          tap(_ => console.log(`fetched product id=${id}`))
+        );
+    }
+
 }
+
 

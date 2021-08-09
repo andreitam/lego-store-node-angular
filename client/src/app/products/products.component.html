@@ -19,7 +19,7 @@
         <!-- product cards -->
         <div class="col-xl-4 col-lg-4 col-md-6 col-12 displayCol"  *ngFor="let product of products | slice: (page-1) * pageSize : page * pageSize" >
           <div class="card">
-            <img [src]="product.picture_url2" class="card-img-top" [alt]="product.picture_url1">
+            <img [src]="product.picture_url2" class="card-img-top card-img" [alt]="product.picture_url1" routerLink="/products/{{product.product_id}}">
             <div class="card-body">
               <h6 class="card-title">{{product.name}}</h6>
               <ngb-rating [rate]="product.rating" [readonly]="true" [max]="5">

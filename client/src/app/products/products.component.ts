@@ -20,7 +20,7 @@ export class ProductsComponent implements OnInit {
       this.activatedRoute.url.subscribe(url =>{
         console.log(url);
         this.getProducts();
-   });
+        });
      }
 
   ngOnInit(): void {

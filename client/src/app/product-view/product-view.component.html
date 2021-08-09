@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <ngb-carousel *ngIf="images">
+        <ng-template ngbSlide *ngFor="let image of images">
+          <div class="picsum-img-wrapper">
+            <img [src]="image" alt="Random first slide" class="img-detail">
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+    <div class="col-md-6">
+      <div class="product-name">{{product.name}}</div>
+      <div class="product-rating">
+        <ngb-rating [rate]="product.rating" [readonly]="true" [max]="5">
+          <ng-template let-fill="fill" let-index="index">
+            <span class="star" [class.filled]="fill === 100">&#9733;</span>
+          </ng-template>
+        </ngb-rating>
+      </div>
+      <div class="product-price">${{product.price}}</div>
+      <div [class]="product.availability">{{product.availability}}</div>
+      <div>
+        <button type="button" class="btn btn-success product-buttons">Add to cart</button>
+      </div>
+      <div>
+        <button type="button" class="btn btn-warning product-buttons">Update</button>
+      </div>
+      <div>
+        <button type="button" class="btn btn-danger product-buttons">Delete</button>
+      </div>
+    </div>
+  </div>
+  <div class="row row-category">
+    <ul class="nav">
+      <div *ngFor="let category of criteriaCategories">
+        <div class="col" >
+          <li class="nav-item li-category">
+            <i [class]="category.icon" id="categoryId" ></i>
+            <div class="category-criteria">{{category.criteria}}</div>
+            <div class="category-unit">{{category.unit}}</div>
+          </li>
+        </div>
+      </div>
+    </ul>
+  </div>
+</div>
+
+
+
+

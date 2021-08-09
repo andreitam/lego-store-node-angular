@@ -21,12 +21,13 @@ export class ThemesService {
       );
   }
 
-    /** GET theme by id. Will 404 if id not found */
+    /** GET theme by id. Return `undefined` when id not found */
   getTheme(id: number): Observable<Theme> {
-    const url = `${this.themeUrl}/${id}`;
-    return this.http.get<Theme>(url)
-      .pipe(
-        tap(_ => console.log(`fetched theme id=${id}`))
-      );
+        const url = `${this.themeUrl}/${id}`;
+        return this.http.get<Theme[]>(url)
+          .pipe(
+            map(themes => themes[0]), // returns a {0|1} element array
+            tap(_ => console.log(`fetched theme id=${id}`))
+          );
   }
 }

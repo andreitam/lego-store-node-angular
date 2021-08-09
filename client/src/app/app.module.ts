@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrandComponent } from './brand/brand.component';
 import { ShopComponent } from './shop/shop.component';
 import { ProductFormComponent } from './product-form/product-form.component';
+import { ProductViewComponent } from './product-view/product-view.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ProductFormComponent } from './product-form/product-form.component';
     BrandComponent,
     ShopComponent,
     ProductSortComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductViewComponent
   ],
   imports: [
     BrowserModule,
