@@ -29,5 +29,12 @@ export class ProductService {
       );
   }
 
+  postProduct(formData: FormData): void {
+    this.http.post(this.productsUrl, formData).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    )
+  }
+
 }
 
