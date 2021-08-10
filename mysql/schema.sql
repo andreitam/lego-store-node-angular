@@ -4,13 +4,10 @@ CREATE TABLE `customer` (
   `customer_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `email` varchar(64) NOT NULL,
-  `address` varchar(128) NOT NULL,
-  `city` varchar(32) NOT NULL,
-  `postal_code` varchar(32) NOT NULL,
-  `phone` varchar(32) DEFAULT NULL,
+  `adress` varchar(256) NOT NULL,
   `rights` tinyint(1) NOT NULL,
   PRIMARY KEY (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `theme` (
   `theme_id` int(11) NOT NULL AUTO_INCREMENT,
