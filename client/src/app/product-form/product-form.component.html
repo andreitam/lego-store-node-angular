@@ -1,7 +1,7 @@
 <div class="col-7 form-container">
     <form class="row g-3" [formGroup]="productForm" (ngSubmit)="onSubmit()">
       <div clas="col-md-12">
-        <h1>Product Form</h1><span>only for admin users</span>
+        <h2>Product Form</h2><span>only for admin users</span>
       </div>
       <div class="col-md-10">
         <label for="product-name" class="form-label form-title">Name</label>
@@ -11,8 +11,9 @@
             Name is required
           </span>
       </div>
-      <div class="col-md-2">
-        <input type="hidden" class="form-control" id="product-id" formControlName="product_id">
+      <div class="col-md-2" *ngIf="isEditMode">
+        <label for="product-id" class="form-label form-title">Id</label>
+        <input type="text" class="form-control" id="product-id" formControlName="product_id">
       </div>
       <div class="col-md-3">
         <label for="product-price" class="form-label form-title">Price</label>
@@ -78,23 +79,36 @@
             </span>
         </div>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-10">
         <label for="form-picture-url" class="form-label form-title">Load product pictures</label>
         <input class="form-control" id="form-picture-url1" type="file" accept=".png, .jpg, .svg" (change)="uploadFile($event, 1)">
           <span class="text-danger"
             *ngIf="(f.image1.invalid) && f.image1.errors?.required">
             Picture 1 upload is required
           </span>
+      </div>
+      <div class="col-md-2">
+        <img class="form-picture-img" src="{{imageDisplay[0]}}" *ngIf="isEditMode" alt="Your image" style="display: block" />
+      </div>
+      <div class="col-md-10">
         <input class="form-control" id="form-picture-url2" type="file" accept=".png, .jpg, .svg" (change)="uploadFile($event, 2)">
           <span class="text-danger"
           *ngIf="(f.image2.invalid) && f.image2.errors?.required">
           Picture 2 upload is required
           </span>
+        </div>
+      <div class="col-md-2">
+        <img class="form-picture-img" src="{{imageDisplay[1]}}" alt=""*ngIf="isEditMode" alt="Your image" style="display: block" />
+      </div>
+      <div class="col-md-10">
         <input class="form-control" id="form-picture-url3" type="file" accept=".png, .jpg, .svg" (change)="uploadFile($event, 3)">
           <span class="text-danger"
             *ngIf="(f.image3.invalid) && f.image3.errors?.required">
             Picture 3 upload is required
           </span>
+      </div>
+      <div class="col-md-2">
+        <img class="form-picture-img" src="{{imageDisplay[2]}}" *ngIf="isEditMode" alt="Your image" style="display: block" />
       </div>
       <div class="col-md-12">
         <p><p>
@@ -102,7 +116,8 @@
       <div class="col-12">
         <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Submit</button>
       </div>
-      <!-- <div>Form Status: {{ productForm.status }}</div> -->
     </form>
 </div>
+
+
 

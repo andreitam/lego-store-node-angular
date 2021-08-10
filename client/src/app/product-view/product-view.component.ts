@@ -66,5 +66,10 @@ export class ProductViewComponent implements OnInit {
         .subscribe(criteriaCategories => this.criteriaCategories = criteriaCategories);
   }
 
+  deleteProduct(): void {
+    this.productService.deleteProduct(this.product.product_id)
+          .subscribe(data => console.log(data));
+  }
+
 }
 

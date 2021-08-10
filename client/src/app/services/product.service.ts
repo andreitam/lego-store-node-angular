@@ -20,22 +20,50 @@ export class ProductService {
       );
   }
 
+  /** POST: create the product on the server */
   postProduct(formData: FormData): void {
     this.http.post(this.productsUrl, formData).subscribe(
-      (response) => console.log(response),
+      (response) => console.log('succesfull post', response),
       (error) => console.log(error)
     )
   }
 
-    /** GET hero by id. Return `undefined` when id not found */
-    getProduct(id: number): Observable<Product> {
-      const url = `${this.productsUrl}/${id}`;
-      return this.http.get<Product[]>(url)
-        .pipe(
-          map(products => products[0]), // returns a {0|1} element array
-          tap(_ => console.log(`fetched product id=${id}`))
-        );
-    }
+  /** GET hero by id. Return `undefined` when id not found */
+  getProduct(id: number): Observable<Product> {
+    const url = `${this.productsUrl}/${id}`;
+    return this.http.get<Product[]>(url)
+      .pipe(
+        map(products => products[0]), // returns a {0|1} element array
+        tap(_ => console.log(`fetched product id=${id}`))
+      );
+  }
+
+  /** DELETE: delete the product from the server */
+  deleteProduct(id: number): Observable<Product> {
+    const url = `${this.productsUrl}/${id}`;
+
+    return this.http.delete<Product>(url)
+    .pipe(
+      tap(_ => console.log(`deleted product id=${id}`))
+    );
+  }
+
+  /** PUT: update the product on the server */
+  putProduct(formData: FormData, id: number) {
+    const url = `${this.productsUrl}/${id}`;
+    this.http.put(url, formData)
+     .pipe(
+       tap(_ => console.log(`updated product`))
+     ).subscribe(data => {console.log('put',data)})
+  }
+
+    // /** POST: create the product on the server */
+    // putProduct(formData: FormData): void {
+    //   this.http.put(this.productsUrl, formData).subscribe(
+    //     (response) => console.log('succesfull put', response),
+    //     (error) => console.log(error)
+    //   )
+    // }
 
 }
 

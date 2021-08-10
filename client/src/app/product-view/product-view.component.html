@@ -24,10 +24,10 @@
         <button type="button" class="btn btn-success product-buttons">Add to cart</button>
       </div>
       <div>
-        <button type="button" class="btn btn-warning product-buttons">Update</button>
+        <button type="button" class="btn btn-warning product-buttons" routerLink="/edit/{{product.product_id}}">Update</button>
       </div>
       <div>
-        <button type="button" class="btn btn-danger product-buttons">Delete</button>
+        <button type="button" class="btn btn-danger product-buttons" (click)="deleteProduct()" routerLink="/main">Delete</button>
       </div>
     </div>
   </div>
@@ -43,6 +43,12 @@
         </div>
       </div>
     </ul>
+  </div>
+  <div class="row row-description">
+    <div class="col">
+      <div class="product-description">Description</div>
+      <div>{{product.description}}</div>
+    </div>
   </div>
 </div>
 

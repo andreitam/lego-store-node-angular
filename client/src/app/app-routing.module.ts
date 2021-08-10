@@ -10,7 +10,9 @@ const routes: Routes = [
   { path: 'main/:id', component: MainComponent},
   { path: 'theme', component: MainComponent},
   { path: 'add', component: ProductFormComponent},
+  { path: 'edit/:id', component: ProductFormComponent},
   { path: 'products/:id', component: ProductViewComponent}
+  //guards for login
 ];
 
 @NgModule({
