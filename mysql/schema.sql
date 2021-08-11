@@ -6,8 +6,9 @@ CREATE TABLE `customer` (
   `email` varchar(64) NOT NULL,
   `adress` varchar(256) NOT NULL,
   `rights` tinyint(1) NOT NULL,
+  `password` binary(60) NOT NULL,
   PRIMARY KEY (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `theme` (
   `theme_id` int(11) NOT NULL AUTO_INCREMENT,
