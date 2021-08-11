@@ -1,0 +1,32 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="register-name" class="form-label">Name</label>
+    <input type="text" class="form-control" id="register-name" formControlName="name">
+    <span class="text-danger"
+      *ngIf="(f.name.touched || f.name.invalid || f.name.dirty) && f.name.errors?.required">
+      Name is required
+    </span>
+  </div>
+  <div class="mb-3">
+    <label for="register-email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="register-email" formControlName="email">
+    <span class="text-danger"
+      *ngIf="(f.email.touched || f.email.invalid || f.email.dirty) && f.email.errors?.required">
+      Valid email is required
+    </span>
+  </div>
+  <div class="mb-3">
+    <label for="register-adress" class="form-label">Shipping adress</label>
+    <input type="text" class="form-control" id="register-adress" formControlName="adress">
+  </div>
+  <div class="mb-3">
+    <label for="register-password" class="form-label">Password</label>
+    <input type="password" class="form-control" id="register-password" formControlName="password" minlength="4">
+    <span class="text-danger"
+      *ngIf="(f.password.touched || f.password.invalid || f.password.dirty) && f.password.errors?.required">
+      Password is required minimum 6 characters
+    </span>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
+</form>

@@ -16,6 +16,10 @@ import { BrandComponent } from './brand/brand.component';
 import { ShopComponent } from './shop/shop.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { ProductViewComponent } from './product-view/product-view.component';
+import { LoginRegisterComponent } from './login-register/login-register.component';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
+
 
 
 @NgModule({
@@ -32,7 +36,10 @@ import { ProductViewComponent } from './product-view/product-view.component';
     ShopComponent,
     ProductSortComponent,
     ProductFormComponent,
-    ProductViewComponent
+    ProductViewComponent,
+    LoginRegisterComponent,
+    LoginFormComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,

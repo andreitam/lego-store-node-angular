@@ -6,7 +6,7 @@ var cors = require('cors');
 const bodyParser = require('body-parser');
 // parse requests of content-type - application/json
 const parseBody = bodyParser.json();
-// parse requests of content-type - application/x-www-form-urlencoded
+// OPTION parse requests of content-type - application/x-www-form-urlencoded
 const parseUrlencoded = bodyParser.urlencoded({ extended: true });
 const corsOptions = {
     //in case we put the client on another server
@@ -21,12 +21,12 @@ const customers = require('./routes/customers.js');
 //create app
 const app = express();
 // cors allow usage of server from different origin only for development
-app.use(cors())
+app.use(cors());
 //static
 app.use(express.static('public'));
 //
 //app.use(parseBody);
-app.use(parseUrlencoded);
+app.use(parseBody);
 
 
 //routes

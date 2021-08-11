@@ -1,0 +1,40 @@
+  <ul class="navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link justify-content-end login-icon" (click)="open(loginModal)"><i class="far fa-user"></i></a>
+    </li>
+  </ul>
+<!-- Login modal -->
+  <ng-template #loginModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <app-brand></app-brand>
+      <h4 class="modal-title" id="modal-basic-title">Login to you account</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-login-form></app-login-form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-link" (click)="c('Save click')" (click)="open(registerModal)" >Register an account</button>
+    </div>
+  </ng-template>
+<!-- Register modal -->
+  <ng-template #registerModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <app-brand></app-brand>
+      <h4 class="modal-title" id="modal-basic-title">Register an account</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-register-form (registerClicked)="c('Save click')"></app-register-form>
+    </div>
+    <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="c('Save click')">Register</button>
+    </div> -->
+  </ng-template>
+
+
+

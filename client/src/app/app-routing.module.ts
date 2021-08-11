@@ -4,6 +4,7 @@ import { ProductFormComponent } from './product-form/product-form.component';
 import { MainComponent } from './main/main.component';
 import { ProductViewComponent } from './product-view/product-view.component';
 
+
 const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'main', component: MainComponent },

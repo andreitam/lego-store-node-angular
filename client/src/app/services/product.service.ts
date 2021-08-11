@@ -49,7 +49,7 @@ export class ProductService {
   }
 
   /** PUT: update the product on the server */
-  putProduct(formData: FormData, id: number) {
+  putProduct(formData: FormData, id: number): void {
     const url = `${this.productsUrl}/${id}`;
     this.http.put(url, formData)
      .pipe(
