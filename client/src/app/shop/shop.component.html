@@ -4,7 +4,7 @@
     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
       <div *ngFor="let shopCategory of shopCategories">
           <div ngbDropdown class="d-inline-block dropright">
-            <button class="btn" id="dropdownBasic1" ngbDropdownToggle>Shop by {{shopCategory.title}}</button>
+            <button class="btn" id="dropdownBasic1" ngbDropdownToggle>{{shopCategory.title}}</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
               <a routerLink="/main" ngbDropdownItem>All</a>
               <div *ngFor="let item of shopCategory.items">
@@ -17,4 +17,6 @@
     </div>
   </div>
 </div>
+
+
 

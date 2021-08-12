@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { ThemesService } from '../services/themes.service';
+import { TokenStorageService } from '../services/token-storage.service';
 import { Product } from '../types/product';
 import { Theme } from '../types/theme';
 import { ProductViewService } from './product-view.service';
@@ -17,13 +18,16 @@ export class ProductViewComponent implements OnInit {
   images: string[] | undefined;
   criteriaCategories: CriteriaCategory[] = [];
   theme: Theme | undefined;
+  isAdmin: Boolean;
+
 
   constructor(private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router,
     private activatedRoute : ActivatedRoute,
     private productViewService: ProductViewService,
-    private themesService: ThemesService) {
+    private themesService: ThemesService,
+    private tokenStorageService: TokenStorageService) {
       this.activatedRoute.url.subscribe(url =>{
         console.log(url);
         this.getProductAndFillView();
@@ -34,6 +38,7 @@ export class ProductViewComponent implements OnInit {
   ngOnInit(): void {
       this.getCriteriaCategories();
       this.getProductAndFillView();
+      this.isAdmin = this.tokenStorageService.checkAdmin();
   }
 
   getProductAndFillView(): void {

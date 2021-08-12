@@ -20,7 +20,7 @@ import { LoginRegisterComponent } from './login-register/login-register.componen
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 
-
+import { authInterceptorProviders } from './interceptors-guards/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

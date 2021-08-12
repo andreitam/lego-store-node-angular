@@ -23,10 +23,10 @@
       <div>
         <button type="button" class="btn btn-success product-buttons">Add to cart</button>
       </div>
-      <div>
+      <div *ngIf="isAdmin">
         <button type="button" class="btn btn-warning product-buttons" routerLink="/edit/{{product.product_id}}">Update</button>
       </div>
-      <div>
+      <div *ngIf="isAdmin">
         <button type="button" class="btn btn-danger product-buttons" (click)="deleteProduct()" routerLink="/main">Delete</button>
       </div>
     </div>

@@ -34,4 +34,12 @@ export class TokenStorageService {
     }
     return {};
   }
+
+  public checkAdmin(): boolean {
+    const user = this.getUser();
+    if (user.rights === 2) {
+      return true;
+    }
+    return false;
+  }
 }
