@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class TokenStorageService {
   private TOKEN_KEY = 'auth-token';
   private USER_KEY = 'auth-user';
+  private CART_KEY = 'cart';
 
   constructor() { }
 
@@ -31,6 +32,19 @@ export class TokenStorageService {
     const user = window.sessionStorage.getItem(this.USER_KEY);
     if (user) {
       return JSON.parse(user);
+    }
+    return {};
+  }
+
+  public saveShoppingCart(items: any): void {
+    window.sessionStorage.removeItem(this.CART_KEY);
+    window.sessionStorage.setItem(this.CART_KEY, JSON.stringify(items));
+  }
+
+  public getShoppingCart(): any {
+    const items = window.sessionStorage.getItem(this.CART_KEY);
+    if (items) {
+      return JSON.parse(items);
     }
     return {};
   }

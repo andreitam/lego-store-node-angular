@@ -1,24 +1,33 @@
 <div class="container">
-  <div *ngFor="let item of items">
-    <div class="card mb-3" style="max-width: 540px;">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img [src]="item.picture_url2" class="img-fluid rounded-start" [alt]="item.picture_url1">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">{{item.name}}</h5>
-            <div class="input-group mb-3 quantity">
-              <span class="input-group-text" id="basic-addon1">Quantity</span>
-              <input type="text" class="form-control" [value]="item.quantity" disabled readonly>
+  <div class="row">
+    <div class="col-8">
+      <div *ngFor="let item of items">
+        <div class="card mb-3" >
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img [src]="item.picture_url2" class="img-fluid rounded-start" [alt]="item.picture_url1">
             </div>
-            <h5 class="card-title">${{item.subtotal}}</h5>
-            <div>
-              <button type="button" class="btn btn-warning product-buttons" (click)="removeFromCart(item)" >Remove from cart</button>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{item.name}}</h5>
+                <div class="input-group mb-3 quantity">
+                  <span class="input-group-text" id="basic-addon1">Quantity</span>
+                  <input type="text" class="form-control" [value]="item.quantity" disabled readonly>
+                </div>
+                <h5 class="card-title">${{item.subtotal}}</h5>
+                <div>
+                  <button type="button" class="btn btn-warning product-buttons" (click)="removeFromCart(item)" >Remove from cart</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="col-4">
+      <app-order></app-order>
+    </div>
   </div>
 </div>
+
+

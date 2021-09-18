@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, from, Observable } from 'rxjs';
+import { TokenStorageService } from '../services/token-storage.service';
 import { Product } from '../types/product';
 import { CartItem } from './types/cart-item';
 
@@ -13,7 +14,9 @@ export class ShoppingCartService {
   private _items = new BehaviorSubject<CartItem[]>([]);
   public items$ = this._items.asObservable();
 
-  constructor() { }
+  constructor(private tokenStorageService: TokenStorageService) {
+    
+   }
 
   addToCart(product: Product, quantity: number) {
     const item: CartItem | undefined = {
@@ -38,6 +41,7 @@ export class ShoppingCartService {
     console.log('current shopping cart', this.items);
     this.updateSize();
     this.updateItems();
+    this.tokenStorageService.saveShoppingCart(this.items);
   }
 
   removeFromCart(cartItem: CartItem) {
@@ -45,6 +49,7 @@ export class ShoppingCartService {
     console.log('current shopping cart', this.items);
     this.updateSize();
     this.updateItems();
+    this.tokenStorageService.saveShoppingCart(this.items);
   }
 
   getItems(): CartItem[]  {
