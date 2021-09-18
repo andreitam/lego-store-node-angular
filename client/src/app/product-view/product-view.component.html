@@ -21,7 +21,11 @@
       <div class="product-price">${{product.price}}</div>
       <div [class]="product.availability">{{product.availability}}</div>
       <div>
-        <button type="button" class="btn btn-success product-buttons">Add to cart</button>
+        <button type="button" class="btn btn-success product-buttons" (click)="addToCart()">Add to cart</button>
+      </div>
+      <div class="input-group mb-3 quantity">
+        <span class="input-group-text" id="basic-addon1">Quantity</span>
+        <input type="text" class="form-control" [(ngModel)]="quantity">
       </div>
       <div *ngIf="isAdmin">
         <button type="button" class="btn btn-warning product-buttons" routerLink="/edit/{{product.product_id}}">Update</button>

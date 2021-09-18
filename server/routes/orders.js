@@ -47,6 +47,7 @@ router.post('/', async (req, res, next) => {
         const results =  await order.insertOrder(status, 
             sql_date_time, total, customer_id);
         console.log("Result: " + Object.entries(results));
+        //retrive the order_id to use in order_product querry
         order_id = results.insertId;
         console.log('Order id', order_id)
         res.json(results); 

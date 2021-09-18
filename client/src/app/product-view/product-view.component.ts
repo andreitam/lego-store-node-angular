@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { ThemesService } from '../services/themes.service';
 import { TokenStorageService } from '../services/token-storage.service';
+import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 import { Product } from '../types/product';
 import { Theme } from '../types/theme';
 import { ProductViewService } from './product-view.service';
@@ -19,6 +20,8 @@ export class ProductViewComponent implements OnInit {
   criteriaCategories: CriteriaCategory[] = [];
   theme: Theme | undefined;
   isAdmin: Boolean;
+  quantity: number = 1;
+
 
 
   constructor(private productService: ProductService,
@@ -27,7 +30,9 @@ export class ProductViewComponent implements OnInit {
     private activatedRoute : ActivatedRoute,
     private productViewService: ProductViewService,
     private themesService: ThemesService,
-    private tokenStorageService: TokenStorageService) {
+    private tokenStorageService: TokenStorageService,
+    private shoppingCartService: ShoppingCartService)
+    {
       this.activatedRoute.url.subscribe(url =>{
         console.log(url);
         this.getProductAndFillView();
@@ -74,6 +79,10 @@ export class ProductViewComponent implements OnInit {
   deleteProduct(): void {
     this.productService.deleteProduct(this.product.product_id)
           .subscribe(data => console.log(data));
+  }
+
+  addToCart(): void {
+    this.shoppingCartService.addToCart(this.product, this.quantity)
   }
 
 }

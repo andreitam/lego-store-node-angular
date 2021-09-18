@@ -57,13 +57,6 @@ export class ProductService {
      ).subscribe(data => {console.log('put',data)})
   }
 
-    // /** POST: create the product on the server */
-    // putProduct(formData: FormData): void {
-    //   this.http.put(this.productsUrl, formData).subscribe(
-    //     (response) => console.log('succesfull put', response),
-    //     (error) => console.log(error)
-    //   )
-    // }
 
 }
 

@@ -16,11 +16,13 @@ import { BrandComponent } from './brand/brand.component';
 import { ShopComponent } from './shop/shop.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { ProductViewComponent } from './product-view/product-view.component';
-import { LoginRegisterComponent } from './login-register/login-register.component';
+import { LoginRegisterCartComponent } from './login-register-cart/login-register-cart.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 
 import { authInterceptorProviders } from './interceptors-guards/auth-interceptor';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   declarations: [
@@ -37,9 +39,11 @@ import { authInterceptorProviders } from './interceptors-guards/auth-interceptor
     ProductSortComponent,
     ProductFormComponent,
     ProductViewComponent,
-    LoginRegisterComponent,
+    LoginRegisterCartComponent,
     LoginFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    ShoppingCartComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

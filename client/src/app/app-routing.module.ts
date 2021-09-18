@@ -5,6 +5,7 @@ import { MainComponent } from './main/main.component';
 import { ProductViewComponent } from './product-view/product-view.component';
 import { Rights } from './types/rights';
 import { AuthGuard } from './interceptors-guards/auth-guard.service';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 
 const routes: Routes = [
@@ -14,8 +15,9 @@ const routes: Routes = [
   { path: 'theme', component: MainComponent},
   { path: 'add', component: ProductFormComponent, canActivate: [AuthGuard], data: { rights: [Rights.Admin] }},
   { path: 'edit/:id', component: ProductFormComponent, canActivate: [AuthGuard], data: { rights: [Rights.Admin] }},
-  { path: 'products/:id', component: ProductViewComponent}
-  //guards for login
+  { path: 'products/:id', component: ProductViewComponent},
+  { path: 'shoppingcart', component: ShoppingCartComponent}
+
 ];
 
 @NgModule({
