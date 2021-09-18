@@ -17,6 +17,7 @@ const PORT = process.env.PORT || 5000;
 const themes = require('./routes/themes.js');
 const products = require('./routes/products.js');
 const customers = require('./routes/customers.js');
+const orders = require('./routes/orders.js');
 
 //create app
 const app = express();
@@ -33,6 +34,7 @@ app.use(parseBody);
 app.use('/themes', themes);
 app.use('/products', products);
 app.use('/customers', customers);
+app.use('/orders', orders);
 
 
 app.listen(PORT, 
