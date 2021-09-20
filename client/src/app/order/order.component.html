@@ -3,16 +3,25 @@
   <div class="card-body">
     <h6 class="card-title">Total:</h6>
     <p class="card-text order-total">$ {{order.total}}</p>
-    <a  class="btn btn-primary button-checkout" (click)="checkout(alertModal)">Checkout</a>
+    <a  class="btn btn-primary button-checkout" (click)="checkout(orderModal)">Checkout</a>
   </div>
 </div>
-<!-- Alert sign in modal -->
-<ng-template #alertModal let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <app-brand></app-brand>
-    <h4 class="modal-title" id="modal-basic-title">Please sign in or register an account to finalise the order</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-</ng-template>
+
+
+  <!-- Order modal -->
+  <ng-template #orderModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <app-brand></app-brand>
+          <h4 class="modal-title" id="modal-basic-title">Order placed</h4>
+          <div class="modal-body">
+            <p>Order no. : {{orderNumber}}</p>
+            <p>Customer : {{customer.email}}</p>
+            <p>Shipping adress : {{customer.adress}}</p>
+          </div>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </ng-template>
+
+

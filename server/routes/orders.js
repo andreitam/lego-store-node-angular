@@ -50,7 +50,7 @@ router.post('/', async (req, res, next) => {
         //retrive the order_id to use in order_product querry
         order_id = results.insertId;
         console.log('Order id', order_id)
-        res.json(results); 
+        res.json(results.insertId); 
     } catch (err){
         console.error('insert order error', err);
     }

@@ -8,14 +8,14 @@ import { CartItem } from './types/cart-item';
   providedIn: 'root'
 })
 export class ShoppingCartService {
-  items: CartItem[] | undefined = [];
+  items: CartItem[] = [];
   private _itemsSize = new BehaviorSubject(0);
   public itemsSize$ = this._itemsSize.asObservable();
   private _items = new BehaviorSubject<CartItem[]>([]);
   public items$ = this._items.asObservable();
 
   constructor(private tokenStorageService: TokenStorageService) {
-    
+
    }
 
   addToCart(product: Product, quantity: number) {
@@ -28,6 +28,7 @@ export class ShoppingCartService {
       name: product.name
 
     }
+    console.log(this.items);
     //check if item already inserted in items
     let exists = this.items.some((el) => el.product_id === item.product_id);
     //if exists change quantity
@@ -39,24 +40,30 @@ export class ShoppingCartService {
       this.items.push(item);
     }
     console.log('current shopping cart', this.items);
+    this.tokenStorageService.saveShoppingCart(this.items);
     this.updateSize();
     this.updateItems();
-    this.tokenStorageService.saveShoppingCart(this.items);
+
   }
 
   removeFromCart(cartItem: CartItem) {
     this.items = this.items.filter((el) => el.product_id !== cartItem.product_id);
     console.log('current shopping cart', this.items);
+    this.tokenStorageService.saveShoppingCart(this.items);
     this.updateSize();
     this.updateItems();
-    this.tokenStorageService.saveShoppingCart(this.items);
+
   }
 
   getItems(): CartItem[]  {
+    this.items = [...this.tokenStorageService.getShoppingCart()];
+    this.updateSize();
+    this.updateItems();
     return this.items;
   }
 
   clearCart() {
+    this.tokenStorageService.removeShoppingCart();
     this.items = [];
     return this.items;
   }

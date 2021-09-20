@@ -21,10 +21,13 @@ export class LoginRegisterCartComponent implements OnInit {
   ngOnInit(): void {
     this.customer = this.tokenStorageService.getUser();
     console.log(this.customer);
-    //subscribe to shopping cart size
-    this.shoppingCartService.itemsSize$.subscribe(
-      (next) => this.cartSize = next
-    );
+        //subscribe to shopping cart size
+        this.shoppingCartService.itemsSize$.subscribe(
+          (next) => this.cartSize = next
+        );
+    //get shopping cart from session storage
+    this.cartSize = this.shoppingCartService.getItems().length;
+    console.log('res', this.cartSize);
   }
 
   open(content) {

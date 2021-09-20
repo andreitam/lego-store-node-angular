@@ -8,14 +8,14 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class OrderService {
-  private productsUrl = 'http://localhost:5000/orders';
+  private orderUrl = 'http://localhost:5000/orders';
 
   constructor(private http: HttpClient) {}
 
   /** POST: create the order on the server */
-  postProduct(order: Order): void {
-    this.http.post(this.productsUrl, order).subscribe(
-      (response) => console.log('succesfull post', response),
+  postOrder(order: Order): void {
+    this.http.post(this.orderUrl, order).subscribe(
+      (response) => response,
       (error) => console.log(error)
     )
   }

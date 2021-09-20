@@ -6,6 +6,7 @@ import { OrderService } from '../services/order.service';
 import { Order } from './types/order';
 import { OrderStatus } from './types/order-status';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Customer } from '../types/customer';
 
 @Component({
   selector: 'app-order',
@@ -15,6 +16,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class OrderComponent implements OnInit {
   order: Order;
   items: CartItem[] = [];
+  customer: Customer;
+  orderNumber;
 
   constructor(private shoppingCartService: ShoppingCartService,
     private tokenStorageService: TokenStorageService,
@@ -25,31 +28,51 @@ export class OrderComponent implements OnInit {
         this.shoppingCartService.items$.subscribe(
           (next) => {
             this.items = next;
+            let orderProducts = [...this.items];
+            for (let item in orderProducts) {
+              delete item['name'];
+              delete item['picture_url1'];
+              delete item['picture_url2'];
+            }
+            this.customer = this.tokenStorageService.getUser();
             //create order
+            console.log('before order creation', this.items, next)
             this.order = {
-              items: this.items,
+              items: orderProducts,
               status: OrderStatus.InProgress,
               date_time: new Date(),
-              total: parseFloat((this.items
+              total: parseFloat((orderProducts
                         .map((el) => el.subtotal)
-                        .reduce((a,c) => a+c)).toFixed(2)),
-              customer_id: this.tokenStorageService.getUser()
+                        .reduce((a,c) => a+c, 0)).toFixed(2)),
+              customer_id: this.customer.customer_id
             };
-            console.log('this is my', this.order)
+            this.tokenStorageService.saveOrder(this.order);
           }
         );
   }
 
   ngOnInit(): void {
-
+    this.order = this.tokenStorageService.getOrder()
   }
 
-  checkout(content): void {
-    const user = this.tokenStorageService.getUser();
-    if (!Boolean(user.customer_id)) {
+  async checkout(content) {
+    this.customer = this.tokenStorageService.getUser();
+    console.log(this.customer);
+    if (this.customer.customer_id > 0) {
       this.modalService.open(content);
+      try {
+        this.orderNumber = await this.orderService.postOrder(this.order);
+        console.log('my order number', this.orderNumber);
+        this.tokenStorageService.removeOrder();
+        this.tokenStorageService.removeShoppingCart();
+        this.modalService.open(content);
+      }
+      catch(e) {
+        console.log(e);
+      }
     }
   }
 
-
 }
+
+

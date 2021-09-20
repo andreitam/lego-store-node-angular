@@ -13,6 +13,7 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.items = this.shoppingCartService.getItems();
+
   }
 
   removeFromCart(cartItem: CartItem): void {

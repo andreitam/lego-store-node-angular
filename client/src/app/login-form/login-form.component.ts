@@ -44,7 +44,7 @@ export class LoginFormComponent implements OnInit {
     const password = this.loginForm.get('password')?.value;
 
     this.authService.login(email,password).subscribe(data => {
-      console.log(data);
+      console.log('login data', data);
       this.tokenStorage.saveToken(data.accessToken);
       this.tokenStorage.saveUser(data);
       this.isLoginFailed = false;
