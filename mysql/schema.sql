@@ -39,18 +39,17 @@ CREATE TABLE `product` (
 
 CREATE TABLE `order` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT,
-  `number` int(11) DEFAULT NULL,
-  `date` date DEFAULT NULL,
+  `status` varchar(32) DEFAULT NULL,
+  `date_time` datetime DEFAULT NULL,
   `total` double DEFAULT NULL,
   `customer_id` int(11) NOT NULL,
   PRIMARY KEY (`order_id`),
   KEY `order_FK` (`customer_id`),
   CONSTRAINT `order_FK` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `order_product` (
   `order_product_id` int(11) NOT NULL AUTO_INCREMENT,
-  `price` float DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `subtotal` double DEFAULT NULL,
   `order_id` int(11) NOT NULL,
@@ -60,4 +59,4 @@ CREATE TABLE `order_product` (
   KEY `order_product_FK_1` (`product_id`),
   CONSTRAINT `order_product_FK` FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`),
   CONSTRAINT `order_product_FK_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
