@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,eAAe,CAAC;EACd,MAAM,EAAE,IAAI;CACb;;AAED,AAAA,WAAW,CAAC;EACV,WAAW,EAAE,IAAI;CAClB;;AAED,AAAA,iBAAiB,CAAC;EAChB,SAAS,EAAE,IAAI;EACf,MAAM,EAAE,IAAI;CACb",
+    "sources": [
+        "product-form.component.scss"
+    ],
+    "names": [],
+    "file": "product-form.component.css"
+}

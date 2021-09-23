@@ -3,7 +3,7 @@
   <div class="card-body">
     <h6 class="card-title">Total:</h6>
     <p class="card-text order-total">$ {{order.total}}</p>
-    <a  class="btn btn-primary button-checkout" (click)="checkout(orderModal)">Checkout</a>
+    <a  class="btn btn-primary button-checkout" (click)="checkout(orderModal)" routerLink="/main">Checkout</a>
   </div>
 </div>
 
@@ -16,7 +16,7 @@
           <div class="modal-body">
             <p>Order no. : {{orderNumber}}</p>
             <p>Customer : {{customer.email}}</p>
-            <p>Shipping adress : {{customer.adress}}</p>
+            <p>Status : {{order.status}}</p>
           </div>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>

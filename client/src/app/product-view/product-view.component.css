@@ -1,0 +1,89 @@
+.img-detail {
+  max-width: 100%;
+  height: auto;
+}
+
+.star {
+  font-size: 1.5rem;
+  color: #b0c4de;
+}
+
+.filled {
+  color: #ffcf00;
+}
+
+.product-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem;
+}
+
+.product-price {
+  font-size: 1.5rem;
+  margin: 1rem;
+}
+
+.product-rating {
+  margin: 1rem;
+}
+
+.Available {
+  font-size: 1rem;
+  color: green;
+  margin: 1rem;
+}
+
+.Coming {
+  font-size: 1rem;
+  color: blue;
+  margin: 1rem;
+}
+
+.Out {
+  font-size: 1rem;
+  color: red;
+  margin: 1rem;
+}
+
+.Upon {
+  font-size: 1rem;
+  color: yellow;
+  margin: 1rem;
+}
+
+.product-buttons {
+  margin: 0.5rem 1rem 0.5rem 1rem;
+  width: 12rem;
+}
+
+.row-category {
+  border-bottom: 1px solid grey;
+}
+
+.row-category .li-category {
+  text-align: center;
+  margin: 1.5rem 4rem 1rem 4rem;
+}
+
+.row-category .li-category #categoryId {
+  font-size: 1.5rem;
+}
+
+.row-category .li-category .category-criteria {
+  font-size: 1.5rem;
+}
+
+.row-category .li-category .category-unit {
+  font-size: 0.75rem;
+}
+
+.row-description {
+  margin: 1.5rem 0rem 1rem 0rem;
+}
+
+.row-description .product-description {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0rem 0rem 1rem 0rem;
+}
+/*# sourceMappingURL=product-view.component.css.map */

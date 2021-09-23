@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,WAAW,AAAA,MAAM,CAAC;EAChB,MAAM,EAAE,OAAO;EACf,KAAK,EAAE,KAAK;CACb;;AACD,AAAA,WAAW,CAAC;EACV,KAAK,EAAC,KAAK;CACZ",
+    "sources": [
+        "login-register.component.scss"
+    ],
+    "names": [],
+    "file": "login-register.component.css"
+}

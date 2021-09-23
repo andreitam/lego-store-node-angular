@@ -1,0 +1,13 @@
+.form-container {
+  margin: auto;
+}
+
+.form-title {
+  font-weight: bold;
+}
+
+.form-picture-img {
+  max-width: 100%;
+  height: auto;
+}
+/*# sourceMappingURL=product-form.component.css.map */

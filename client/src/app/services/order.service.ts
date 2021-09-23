@@ -13,11 +13,8 @@ export class OrderService {
   constructor(private http: HttpClient) {}
 
   /** POST: create the order on the server */
-  postOrder(order: Order): void {
-    this.http.post(this.orderUrl, order).subscribe(
-      (response) => response,
-      (error) => console.log(error)
-    )
+  postOrder(order: Order) {
+    return this.http.post(this.orderUrl, order).toPromise();
   }
 
 

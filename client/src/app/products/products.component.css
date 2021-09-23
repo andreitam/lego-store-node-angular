@@ -1,0 +1,51 @@
+.container {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sort-drop {
+  padding-bottom: 15px;
+}
+
+.flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.displayCol {
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 15px;
+}
+
+.card-body .star {
+  font-size: 1.5rem;
+  color: #b0c4de;
+}
+
+.card-body .filled {
+  color: #ffcf00;
+}
+
+.card-body .add-cart {
+  width: 13rem;
+  color: black;
+}
+
+.card-img:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=products.component.css.map */

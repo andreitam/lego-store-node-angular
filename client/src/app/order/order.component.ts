@@ -18,6 +18,7 @@ export class OrderComponent implements OnInit {
   items: CartItem[] = [];
   customer: Customer;
   orderNumber;
+  isSignedIn: boolean = false;
 
   constructor(private shoppingCartService: ShoppingCartService,
     private tokenStorageService: TokenStorageService,
@@ -57,20 +58,28 @@ export class OrderComponent implements OnInit {
 
   async checkout(content) {
     this.customer = this.tokenStorageService.getUser();
-    console.log(this.customer);
-    if (this.customer.customer_id > 0) {
-      this.modalService.open(content);
+    console.log('this customer', this.customer);
+    if (Boolean(this.customer.customer_id)) {
+      console.log('signed in')
+      this.isSignedIn = true;
       try {
-        this.orderNumber = await this.orderService.postOrder(this.order);
-        console.log('my order number', this.orderNumber);
+        let insertId = await this.orderService.postOrder(this.order);
+        this.orderNumber = insertId;
         this.tokenStorageService.removeOrder();
-        this.tokenStorageService.removeShoppingCart();
+        this.shoppingCartService.clearCart();
+        this.shoppingCartService.updateSize();
         this.modalService.open(content);
       }
       catch(e) {
         console.log(e);
       }
     }
+    else {
+      this.isSignedIn = false;
+      alert('Please Sign In or rRegister to finalise your Order!');
+    }
+    //turn switch back off
+    this.isSignedIn = false;
   }
 
 }

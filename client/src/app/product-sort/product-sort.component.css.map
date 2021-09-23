@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "product-sort.component.scss"
+    ],
+    "names": [],
+    "file": "product-sort.component.css"
+}
