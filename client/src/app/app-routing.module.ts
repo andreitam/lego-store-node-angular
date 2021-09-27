@@ -17,7 +17,6 @@ const routes: Routes = [
   { path: 'edit/:id', component: ProductFormComponent, canActivate: [AuthGuard], data: { rights: [Rights.Admin] }},
   { path: 'products/:id', component: ProductViewComponent},
   { path: 'shoppingcart', component: ShoppingCartComponent}
-
 ];
 
 @NgModule({

@@ -12,7 +12,7 @@ import { ActivatedRoute, NavigationEnd, NavigationError, NavigationStart, Router
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
   page: number = 1;
-  pageSize: number = 12;
+  pageSize: number = 6;
 
 
   constructor(private productService: ProductService,
