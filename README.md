@@ -6,6 +6,9 @@ E-commerce site with Angular, Node and MySql.
 - Server: install dependencies in `server` folder with `npm install`. Start server with `npm run local`.
 - Client: Stat server in `client` folder with `ng serve -o`.
 
+# disclaimer
+LEGO, the LEGO logo and all the themes and product pictures and details are trademarks of the LEGO Group. 
+
 # functionalities
 - products view with sorting and filtering
 ![main2](https://user-images.githubusercontent.com/62688644/135043644-a27ef838-e1e5-4231-973b-f3cfed803c65.PNG)
