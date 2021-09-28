@@ -1,5 +1,5 @@
 # lego-store-node-angular
-E-commerce site with Angular, Node and MySql. 
+E-commerce site with Angular, Node and MySql.
 
 # setup
 - DB: create from schemas in `mysql` folder.
