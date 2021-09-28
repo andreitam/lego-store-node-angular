@@ -1,2 +1,2 @@
 # lego-store-node-angular
-Online store of lego sets
+E-commerce site with Angular, Node and MySql. 
