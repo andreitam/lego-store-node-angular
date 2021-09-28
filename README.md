@@ -20,7 +20,7 @@ LEGO, the LEGO logo and all the themes and product pictures and details are trad
 ![add-form](https://user-images.githubusercontent.com/62688644/135044361-fa91373b-5ec3-4085-883a-de1ab1d3b5dd.PNG)
 - shopping cart view with delete button for each item and order calculation view with checkout button
 ![shopping-cart](https://user-images.githubusercontent.com/62688644/135044271-837cc999-db63-4729-8c8b-fb1b723e04b4.PNG)
-- confirmation order created
+- order confirmation created
 ![order](https://user-images.githubusercontent.com/62688644/135044506-fd528321-e9e7-4ed3-a723-3c4c2a797df1.PNG)
 
 # rest api
